@@ -15,3 +15,11 @@ td, th {
     width: 140px;
     margin: 2px;
 }
+
+.coffee:hover {
+    background-color: purple;
+}
+
+.fa-edit:hover {
+    color: lightpink;
+}

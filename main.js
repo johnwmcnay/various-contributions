@@ -6,7 +6,9 @@ var roastSelection = document.querySelector('#roast-selection');
 var addCoffeeButton = document.querySelector('#add-submit');
 var addRoast = document.querySelector('#add-roast-selection');
 var newCoffee = document.querySelector('#add-coffee');
-var searchCoffee = document.querySelector("#search")
+var searchCoffee = document.querySelector("#search");
+var stagedItem = document.querySelector("#staged-item");
+
 
 //creates elements, and returns group of elements
 function renderCoffee(coffee) {
@@ -14,29 +16,54 @@ function renderCoffee(coffee) {
     let div = document.createElement("div");
     div.classList.add("coffee");
 
-    div.addEventListener("mouseenter", function( event ) {
-        event.target.style.backgroundColor = "purple";
-    });
-
-    div.addEventListener("mouseleave", function( event ) {
-        event.target.style.backgroundColor = "gray";
-    });
-
     let heading = document.createElement("h3");
     heading.innerText = coffee.name;
 
     let p = document.createElement("p");
     p.innerText = coffee.roast;
 
-    let btn = document.createElement("p");
-    btn.innerHTML = '<i class="far fa-edit"></i>';
+    let edit = document.createElement("div");
+    edit.innerHTML = '<i class="far fa-edit"></i>';
+    edit.style.display = "none";
+
+    div.addEventListener("mouseenter", function( event ) {
+         edit.style.display = "inline-block";
+    });
+
+    div.addEventListener("click", function( event ) {
+        stagedItem.innerText = div.innerText;
+    });
+
+    div.addEventListener("mouseleave", function( event ) {
+        edit.style.display = "none";
+    });
+
 
     div.appendChild(heading);
     div.appendChild(p);
-    div.appendChild(btn);
+    div.appendChild(edit);
 
     return div;
 }
+
+function test() {
+    let text = stagedItem.innerText.replace(/(\r\n|\n|\r)/gm," ");
+    let array = text.split("  ");
+
+    for (let index in coffees) {
+
+        if (coffees[index].name === array[0]) {
+            //delete the item
+            coffees.splice(index, 1);
+        }
+    }
+
+    localStorage.setItem("coffees", JSON.stringify(coffees));
+    stagedItem.innerText = '';
+
+    updateCoffees();
+}
+
 
 //loops through the array of coffees, calling renderCoffee on each one
 //returns a string containing html
@@ -52,7 +79,9 @@ function renderCoffees(coffees) {
 
 //triggered on events to update the screen based on user input
 function updateCoffees(e) {
-    e.preventDefault(); // don't submit the form, we just want to update the data
+    if (e) {
+        e.preventDefault(); // don't submit the form, we just want to update the data
+    }
     var selectedRoast = roastSelection.value;
     var filteredCoffees = [];
     coffees.forEach(function(coffee) {
