@@ -11,8 +11,9 @@
         <input type="text" id="search" name="search" onkeyup="searchCoffee()">
 
     <form>
-        <label for="roast-selection"></label>
+        <label for="roast-selection">Filter by roast</label>
         <select id="roast-selection">
+            <option>All</option>
             <option>light</option>
             <option>medium</option>
             <option>dark</option>
@@ -20,16 +21,18 @@
         <input id="submit" type="submit" />
     </form>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>ROAST</th>
-            </tr>
-        </thead>
+    <form>
+        <label for="add-roast-selection">Add Coffee</label>
+        <select id="add-roast-selection">
+            <option>All</option>
+            <option>light</option>
+            <option>medium</option>
+            <option>dark</option>
+        </select>
+        <input id="add-submit" type="submit" />
+    </form>
         <div id="coffees"></div>
-    </table>
+
 
     <script src="main.js"></script>
 </body>
