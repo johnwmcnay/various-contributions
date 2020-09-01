@@ -84,6 +84,6 @@ function addCoffee(e){
     console.log(coffeeName);
     console.log(newRoast);
     coffees.push(updatedCoffee);
-    searchCoffee();
+    updateCoffees(e);
 }
 
