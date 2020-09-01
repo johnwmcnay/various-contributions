@@ -1,18 +1,17 @@
 "use strict"
 
 function renderCoffee(coffee) {
-    var html = '<tr class="coffee">';
-    html += '<td>' + coffee.id + '</td>';
-    html += '<td>' + coffee.name + '</td>';
-    html += '<td>' + coffee.roast + '</td>';
-    html += '</tr>';
+    var html = '<div class="coffee">';
+    html += '<h3>' + coffee.name + '</h3>';
+    html += '<p>' + coffee.roast + '</p>';
+    html += '</div>';
 
     return html;
 }
 
 function renderCoffees(coffees) {
     var html = '';
-    for(var i = coffees.length - 1; i >= 0; i--) {
+    for(var i = 0; i < coffees.length; i++) {
         html += renderCoffee(coffees[i]);
     }
     return html;
@@ -55,3 +54,19 @@ var roastSelection = document.querySelector('#roast-selection');
 tbody.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener('click', updateCoffees);
+
+
+function searchCoffee(){
+    var coffeeFilter = [];
+    var coffeeName = document.querySelector('#search').value.toLowerCase();
+    // console.log(coffeeName.value);
+    for(var i = 0; i < coffees.length; i++) {
+        if(coffees[i].name.toLowerCase().indexOf(coffeeName) !== -1){
+            coffeeFilter.push(coffees[i]);
+        }
+    }
+    console.log(coffeeFilter);
+
+}
+
+
