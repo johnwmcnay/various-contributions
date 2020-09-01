@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>Coffee!</h1>
+    <label for="search">Search for Coffee by name</label>
+        <input type="text" id="search" name="search" onkeyup="searchCoffee()">
 
     <form>
         <label for="roast-selection"></label>
@@ -26,7 +28,7 @@
                 <th>ROAST</th>
             </tr>
         </thead>
-        <tbody id="coffees"></tbody>
+        <div id="coffees"></div>
     </table>
 
     <script src="main.js"></script>
