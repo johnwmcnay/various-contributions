@@ -32,13 +32,12 @@ function renderCoffee(coffee) {
     });
 
     div.addEventListener("click", function( event ) {
-        stagedItem.innerText = div.innerText;
+        stagedItem.innerText = "Name: " + coffee.name + "\nRoast: " + coffee.roast;
+        stagedItem.coffeeName = coffee.name;
+        stagedItem.coffeeRoast = coffee.roast;
 
-        let text = stagedItem.innerText.replace(/(\r\n|\n|\r)/gm," ");
-        let array = text.split("  ");
-
-        editCoffee.value = array[0];
-        editRoastSelection.value = array[1];
+        editCoffee.value = coffee.name;
+        editRoastSelection.value = coffee.roast;
 
     });
 
@@ -59,12 +58,11 @@ function editItem() {
 }
 
 function deleteItem() {
-    let text = stagedItem.innerText.replace(/(\r\n|\n|\r)/gm," ");
-    let array = text.split("  ");
+
 
     for (let index in coffees) {
 
-        if (coffees[index].name === array[0]) {
+        if (coffees[index].name === stagedItem.coffeeName) {
             //delete the item
             coffees.splice(index, 1);
         }
@@ -72,6 +70,10 @@ function deleteItem() {
 
     localStorage.setItem("coffees", JSON.stringify(coffees));
     stagedItem.innerText = '';
+    delete stagedItem.coffeeName;
+    delete stagedItem.coffeeRoast;
+    editCoffee.value = '';
+    editRoastSelection.value = '';
 
     updateCoffees();
 }
@@ -133,7 +135,6 @@ let coffees = function() {
     ];
 
 }();
-
 
 //initializes page on load
 renderCoffees(coffees);
