@@ -22,7 +22,7 @@ function updateCoffees(e) {
     var selectedRoast = roastSelection.value;
     var filteredCoffees = [];
     coffees.forEach(function(coffee) {
-        if (coffee.roast === selectedRoast || selectedRoast === "All") {
+        if ((coffee.roast === selectedRoast || selectedRoast === "All") && hasCoffee(coffee)) {
             filteredCoffees.push(coffee);
         }
     });
@@ -48,31 +48,42 @@ var coffees = [
 ];
 
 var coffeeDiv = document.querySelector('#coffees');
-var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
 var addCoffeeButton = document.querySelector('#add-submit');
+var addRoast = document.querySelector('#add-roast-selection');
+var newCoffee = document.querySelector('#add-coffee');
+var searchCoffee = document.querySelector("#search")
 
 coffeeDiv.innerHTML = renderCoffees(coffees);
 
-submitButton.addEventListener('click', updateCoffees);
+
 addCoffeeButton.addEventListener('click', addCoffee);
+searchCoffee.addEventListener('keyup', updateCoffees);
+roastSelection.addEventListener('change', updateCoffees);
 
-function searchCoffee(){
-
-    var coffeeFilter = [];
+function hasCoffee(coffee){
+    //
+    // var coffeeFilter = [];
     var coffeeName = document.querySelector('#search').value.toLowerCase();
-    // console.log(coffeeName.value);
-    for(var i = 0; i < coffees.length; i++) {
-        if(coffees[i].name.toLowerCase().indexOf(coffeeName) !== -1){
-            coffeeFilter.push(coffees[i]);
-        }
-    }
-    console.log(coffeeFilter);
-    coffeeDiv.innerHTML = renderCoffees(coffeeFilter);
+    // // console.log(coffeeName.value);
+    // for(var i = 0; i < coffees.length; i++) {
+        return(coffee.name.toLowerCase().indexOf(coffeeName) !== -1);
 
 }
 
 function addCoffee(e){
     e.preventDefault()
     console.log("Coffee added");
+    var coffeeName = newCoffee.value;
+    var newRoast = addRoast.value;
+    var updatedCoffee = {
+        id: coffees.length + 1,
+        name: coffeeName,
+        roast: newRoast
+    }
+    console.log(coffeeName);
+    console.log(newRoast);
+    coffees.push(updatedCoffee);
+    searchCoffee();
 }
+
