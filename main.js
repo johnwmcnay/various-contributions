@@ -8,7 +8,8 @@ var addRoast = document.querySelector('#add-roast-selection');
 var newCoffee = document.querySelector('#add-coffee');
 var searchCoffee = document.querySelector("#search");
 var stagedItem = document.querySelector("#staged-item");
-
+var editCoffee = document.querySelector("#edit-coffee");
+var editRoastSelection = document.querySelector("#edit-roast-selection");
 
 //creates elements, and returns group of elements
 function renderCoffee(coffee) {
@@ -32,6 +33,13 @@ function renderCoffee(coffee) {
 
     div.addEventListener("click", function( event ) {
         stagedItem.innerText = div.innerText;
+
+        let text = stagedItem.innerText.replace(/(\r\n|\n|\r)/gm," ");
+        let array = text.split("  ");
+
+        editCoffee.value = array[0];
+        editRoastSelection.value = array[1];
+
     });
 
     div.addEventListener("mouseleave", function( event ) {
@@ -46,7 +54,11 @@ function renderCoffee(coffee) {
     return div;
 }
 
-function test() {
+function editItem() {
+
+}
+
+function deleteItem() {
     let text = stagedItem.innerText.replace(/(\r\n|\n|\r)/gm," ");
     let array = text.split("  ");
 
@@ -130,6 +142,16 @@ renderCoffees(coffees);
 addCoffeeButton.addEventListener('click', addCoffee);
 searchCoffee.addEventListener('keyup', updateCoffees);
 roastSelection.addEventListener('change', updateCoffees);
+editRoastSelection.addEventListener('change', updateEdit);
+
+function updateEdit(){
+    let text = stagedItem.innerText.replace(/(\r\n|\n|\r)/gm," ");
+    let array = text.split("  ");
+
+    array[1] = editRoastSelection.value;
+
+    stagedItem.innerText = array.join("  ");
+}
 
 //returns whether user-inputted text matches and part of a coffee name; case-insensitive
 function hasCoffee(coffee){

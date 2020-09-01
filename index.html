@@ -39,9 +39,18 @@
 
     <div id="stage">
         <div id="staged-item"></div>
-        <button id="delete" onclick="test()">Delete</button>
-    </div>
+        <button id="edit-item" onclick="editItem()">Edit</button>
 
+        <label for="edit-coffee"></label>
+        <input type="text" id="edit-coffee" name="add" disabled>
+        <label for="edit-roast-selection"></label>
+        <select id="edit-roast-selection" disabled>
+            <option>light</option>
+            <option>medium</option>
+            <option>dark</option>
+        </select>
+        <button id="delete" onclick="deleteItem()">Delete</button>
+    </div>
 
     <script src="main.js"></script>
 </body>
