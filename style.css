@@ -21,6 +21,10 @@ body {
     justify-content: center;
 }
 
+.card:hover {
+    background-color: var(--light-brown);
+}
+
 .card-text {
     font-style: italic;
     font-size: 2vw;
@@ -52,23 +56,28 @@ td, th {
 }
 
 .fa-edit:hover {
-    color: lightpink;
+    color: var(--chocolate);
+}
+
+.fa-edit {
+    float: right;
+    position: absolute;
+    font-size: 3vw;
+    bottom: 20px;
+    right: 5px;
 }
 
 .card-body {
-    height: 28vw;
+    height: 15vw;
+    position: relative;
 }
-
-/*#coffees {*/
-/*    margin: 5px;*/
-/*}*/
 
 hr {
     background-color: var(--mocha);
 }
 
 .sticky {
-    position: -webkit-sticky; /* Safari */
+    position: -webkit-sticky;
     position: sticky;
     top: 16px;
     z-index: 1000;

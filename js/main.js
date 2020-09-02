@@ -2,7 +2,7 @@
 
 
 function editItem() {
-
+    //TODO: create ability to edit
 }
 
 function deleteItem() {
@@ -23,6 +23,10 @@ function deleteItem() {
     editRoastSelection.value = '';
 
     updateCoffees();
+}
+
+function undoDelete() {
+    //TODO: add the ability to undo deletes
 }
 
 function updateEdit(){
