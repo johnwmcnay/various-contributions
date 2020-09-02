@@ -16,7 +16,7 @@ function renderCoffee(coffee) {
 
     let div = document.createElement("div");
     div.classList.add("coffee");
-
+    div.classList.add("col-5");
     let heading = document.createElement("h3");
     heading.innerText = coffee.name;
 
