@@ -11,7 +11,7 @@ body {
 }
 
 .card-title {
-    font-size: 3vw;
+    font-size: min(3vw, 24px);
 }
 
 .card-body {
@@ -19,6 +19,8 @@ body {
     text-align: center;
     display: flex;
     justify-content: center;
+    height: min(15vw, 100px);
+    position: relative;
 }
 
 .card:hover {
@@ -27,7 +29,7 @@ body {
 
 .card-text {
     font-style: italic;
-    font-size: 2vw;
+    font-size: min(2.2vw, 16px);
 }
 
 .card {
@@ -44,16 +46,16 @@ td, th {
     padding: 5px 10px;
 }
 
-.coffee {
-    background-color: gray;
-    display: inline-block;
-    height: 15vw;
-    margin: 2px;
-}
+/*.coffee {*/
+/*    background-color: gray;*/
+/*    display: inline-block;*/
+/*    height: 15vw;*/
+/*    margin: 2px;*/
+/*}*/
 
-.coffee:hover {
-    background-color: purple;
-}
+/*.coffee:hover {*/
+/*    background-color: purple;*/
+/*}*/
 
 .fa-edit:hover {
     color: var(--chocolate);
@@ -62,14 +64,9 @@ td, th {
 .fa-edit {
     float: right;
     position: absolute;
-    font-size: 3vw;
+    font-size: min(2.5vw, 20px);
     bottom: 20px;
     right: 5px;
-}
-
-.card-body {
-    height: 15vw;
-    position: relative;
 }
 
 hr {
@@ -87,6 +84,7 @@ hr {
 
 .results {
     color: var(--lightest-brown);
+    font-size: min(2.5vw, 20px);
 }
 
 #numOfResults {
