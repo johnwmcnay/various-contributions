@@ -14,14 +14,19 @@ var editRoastSelection = document.querySelector("#edit-roast-selection");
 //creates elements, and returns group of elements
 function renderCoffee(coffee) {
 
+    let wrapper = document.createElement("div");
+    wrapper.classList.add("card", "col-5", "m-2");
+
     let div = document.createElement("div");
-    div.classList.add("coffee");
-    div.classList.add("col-5");
+    div.classList.add("card-body");
+
     let heading = document.createElement("h3");
+    heading.classList.add("card-title");
     heading.innerText = coffee.name;
 
     let p = document.createElement("p");
     p.innerText = coffee.roast;
+    p.classList.add("card-text");
 
     let edit = document.createElement("div");
     edit.innerHTML = '<i class="far fa-edit"></i>';
@@ -49,8 +54,9 @@ function renderCoffee(coffee) {
     div.appendChild(heading);
     div.appendChild(p);
     div.appendChild(edit);
+    wrapper.appendChild(div);
 
-    return div;
+    return wrapper;
 }
 
 function editItem() {

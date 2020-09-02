@@ -11,8 +11,7 @@ td, th {
 .coffee {
     background-color: gray;
     display: inline-block;
-    height: 100px;
-    width: 140px;
+    height: 15vw;
     margin: 2px;
 }
 
@@ -23,3 +22,11 @@ td, th {
 .fa-edit:hover {
     color: lightpink;
 }
+
+.card-body {
+    height: 28vw;
+}
+
+/*#coffees {*/
+/*    margin: 5px;*/
+/*}*/
