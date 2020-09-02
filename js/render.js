@@ -1,4 +1,3 @@
-
 //creates elements, and returns group of elements
 function renderCoffee(coffee) {
 
@@ -26,8 +25,7 @@ function renderCoffee(coffee) {
 
     div.addEventListener("click", function( event ) {
         stagedItem.innerText = "Name: " + coffee.name + "\nRoast: " + coffee.roast;
-        stagedItem.coffeeName = coffee.name;
-        stagedItem.coffeeRoast = coffee.roast;
+        stagedItem.coffee = coffee
 
         editCoffee.value = coffee.name;
         editRoastSelection.value = coffee.roast;
@@ -77,4 +75,34 @@ function updateCoffees(e) {
 
     //updates the screen based on user input
     renderCoffees(filteredCoffees);
+}
+
+//returns whether user-inputted text matches and part of a coffee name; case-insensitive
+function hasCoffee(coffee){
+
+    var coffeeName = searchCoffee.value.toLowerCase();
+    return(coffee.name.toLowerCase().indexOf(coffeeName) !== -1);
+
+}
+
+//updates the screen
+function addCoffee(e){
+    e.preventDefault()
+
+    var coffeeName = newCoffee.value;
+    var newRoast = addRoast.value;
+    var updatedCoffee = {
+        id: coffees.length + 1,
+        name: coffeeName,
+        roast: newRoast
+    }
+
+    coffees.push(updatedCoffee);
+
+    if(localStorage) {
+        //JSON.stringify used as you can only use localStorage with strings
+        localStorage.setItem("coffees", JSON.stringify(coffees));
+    }
+
+    updateCoffees(e);
 }

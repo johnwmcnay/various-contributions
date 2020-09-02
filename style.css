@@ -79,3 +79,7 @@ hr {
 .results {
     color: var(--lightest-brown);
 }
+
+#numOfResults {
+    margin-right: 4px;
+}
