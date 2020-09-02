@@ -5,32 +5,37 @@
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/6fa36e9c98.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <h1>Coffee!</h1>
+    <div class="row align-items-center">
+        <div class="col-sm-12 text-center pt-4">
+            <h1>Coffee Finder</h1>
         </div>
     </div>
     <hr>
-    <form>
+
+    <form class="sticky p-2">
         <div class="form-row">
             <div class="col-6 d-flex align-items-end" style="padding-right: 8px">
                 <input class="form-control" type="text" id="search" name="search"
                        placeholder="Search for coffee by name">
             </div>
-            <div class="col-6" style="padding-left: 8px">
-<!--                <label class="control-label" for="roast-selection">Filter by roast</label>-->
+            <div class="col-3" style="padding-left: 8px">
+                <!--                <label class="control-label" for="roast-selection">Filter by roast</label>-->
                 <select class="form-control" id="roast-selection">
                     <option>All</option>
                     <option>light</option>
                     <option>medium</option>
                     <option>dark</option>
                 </select>
+            </div>
+            <div class="col-3 results d-flex justify-content-center align-items-center">
+                <span id="numOfResults" ></span> results found
             </div>
         </div>
     </form>
@@ -55,22 +60,20 @@
     <div class="row justify-content-center m-3" id="coffees"></div>
 
 
+    <div id="stage" class="d-none">
+        <div id="staged-item"></div>
+        <button id="edit-item" onclick="editItem()">Edit</button>
 
-
-<div id="stage" class="d-none">
-    <div id="staged-item"></div>
-    <button id="edit-item" onclick="editItem()">Edit</button>
-
-    <label for="edit-coffee"></label>
-    <input type="text" id="edit-coffee" name="add" disabled>
-    <label for="edit-roast-selection"></label>
-    <select id="edit-roast-selection" disabled>
-        <option>light</option>
-        <option>medium</option>
-        <option>dark</option>
-    </select>
-    <button id="delete" onclick="deleteItem()">Delete</button>
-</div>
+        <label for="edit-coffee"></label>
+        <input type="text" id="edit-coffee" name="add" disabled>
+        <label for="edit-roast-selection"></label>
+        <select id="edit-roast-selection" disabled>
+            <option>light</option>
+            <option>medium</option>
+            <option>dark</option>
+        </select>
+        <button id="delete" onclick="deleteItem()">Delete</button>
+    </div>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

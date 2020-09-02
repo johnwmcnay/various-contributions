@@ -1,3 +1,35 @@
+:root {
+    --lightest-brown: #C3A995;
+    --light-brown: #AB947E;
+    --mocha: #6F5E53;
+    --chocolate: #593D3B;
+}
+
+body {
+    /*background-color: var(--lightest-brown);*/
+    font-family: 'Lora', serif;
+}
+
+.card-title {
+    font-size: 3vw;
+}
+
+.card-body {
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.card-text {
+    font-style: italic;
+    font-size: 2vw;
+}
+
+.card {
+    background-color: var(--lightest-brown);
+}
+
 table {
     border-collapse: collapse;
     margin: 15px 0;
@@ -30,3 +62,20 @@ td, th {
 /*#coffees {*/
 /*    margin: 5px;*/
 /*}*/
+
+hr {
+    background-color: var(--mocha);
+}
+
+.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 16px;
+    z-index: 1000;
+    border-radius: 5px;
+    background-color: var(--chocolate);
+}
+
+.results {
+    color: var(--lightest-brown);
+}

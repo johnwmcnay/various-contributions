@@ -113,6 +113,9 @@ function updateCoffees(e) {
     });
 
     //updates the screen based on user input
+    let element = document.getElementById("numOfResults")
+    console.log(element);
+    element.innerText = filteredCoffees.length.toString();
     renderCoffees(filteredCoffees);
 }
 
