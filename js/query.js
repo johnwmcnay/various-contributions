@@ -8,3 +8,5 @@ var searchCoffee = document.querySelector("#search");
 var stagedItem = document.querySelector("#staged-item");
 var editCoffee = document.querySelector("#edit-coffee");
 var editRoastSelection = document.querySelector("#edit-roast-selection");
+var addDiv = document.querySelector("#add-div");
+var addIcon = document.querySelector("#add-icon")

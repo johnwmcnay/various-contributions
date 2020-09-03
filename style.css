@@ -84,13 +84,20 @@ hr {
     border-radius: 5px;
     background-color: var(--chocolate);
     opacity: 85%;
+    border: 10px solid var(--chocolate);
 }
 
 .results {
     color: var(--lightest-brown);
     font-size: min(2.5vw, 20px);
+    border-right: 2px dashed var(--lightest-brown);
 }
 
 #numOfResults {
     margin-right: 4px;
+}
+
+.fa-plus-circle {
+    font-size: min(3.5vw, 36px);
+    color: #fffaf0;
 }
