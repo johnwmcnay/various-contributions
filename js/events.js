@@ -30,9 +30,18 @@ function toggle() {
 addCoffeeButton.addEventListener('click', addCoffee);
 searchCoffee.addEventListener('input', updateCoffees);
 roastSelection.addEventListener('change', updateCoffees);
-editRoastSelection.addEventListener('change', updateEdit);
+// editRoastSelection.addEventListener('change', updateEdit);
 addDiv.addEventListener('mouseenter', addHoverOn)
 addDiv.addEventListener('mouseleave', addHoverOff);
 addDiv.addEventListener('click', toggle);
 
+$(function () {
+    $('[data-toggle="popover"]').popover({
+        'html': true,
+        'container': 'body',
+        'content': function() {
+            return $("#testers").html()}
+    }
 
+    );
+})

@@ -3,6 +3,13 @@ function renderCoffee(coffee) {
 
     let wrapper = document.createElement("div");
     wrapper.classList.add("card", "col-5", "m-2");
+    wrapper.setAttribute("data-toggle", "popover");
+    // wrapper.setAttribute("data-content", $("#stage").html());
+    console.log($("#stage").html())
+    wrapper.setAttribute("title", "title");
+
+    let popoverDiv = document.createElement("div");
+
 
     let div = document.createElement("div");
     div.classList.add("card-body");
@@ -24,7 +31,8 @@ function renderCoffee(coffee) {
     });
 
     div.addEventListener("click", function( event ) {
-        stagedItem.innerText = "Name: " + coffee.name + "\nRoast: " + coffee.roast;
+        document.querySelector('#editName').innerText = coffee.name;
+        document.querySelector('#editRoast').innerText = coffee.roast;
         stagedItem.coffee = coffee
 
         editCoffee.value = coffee.name;

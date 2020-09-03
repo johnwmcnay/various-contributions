@@ -105,3 +105,8 @@ hr {
 p{
     margin: 0;
 }
+
+#editForm{
+    display:block;
+    visibility: visible;
+}
