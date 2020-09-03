@@ -38,11 +38,22 @@
                     <option>medium</option>
                     <option>dark</option>
                 </select>
+                <label class="control-label d-none" for="add-roast-selection"></label>
+                <select class="form-control d-none" id="add-roast-selection">
+                    <option>light</option>
+                    <option>medium</option>
+                    <option>dark</option>
+                </select>
             </div>
             <div class="col-3 col-lg-2 results d-flex justify-content-center align-items-center">
-                <span id="numOfResults" ></span> results found
+                <span id="results"><span id="numOfResults" ></span> results found</span>
+                <input class="form-control d-none" id="add-submit" type="submit"/>
             </div>
-            <div class="col-1 text-center" id="add-div"><i class="fas fa-plus-circle" id="add-icon"></i></div>
+            <div class="col-1 d-flex align-items-center justify-content-center" id="add-div">
+                <i class="fas fa-plus-circle" id="add-icon"></i>
+                <i class="fas fa-search d-none" id="search-btn"></i>
+            </div>
+
         </div>
     </form>
     <form class="d-none">
@@ -52,13 +63,13 @@
 <!--                <input class="form-control" type="text" id="add-coffee" name="add">-->
 <!--            </div>-->
             <div class="col-12">
-                <label class="control-label" for="add-roast-selection">Select Roast</label>
-                <select class="form-control" id="add-roast-selection">
-                    <option>light</option>
-                    <option>medium</option>
-                    <option>dark</option>
-                </select>
-                <input class="form-control" id="add-submit" type="submit"/>
+<!--                <label class="control-label" for="add-roast-selection">Select Roast</label>-->
+<!--                <select class="form-control" id="add-roast-selection">-->
+<!--                    <option>light</option>-->
+<!--                    <option>medium</option>-->
+<!--                    <option>dark</option>-->
+<!--                </select>-->
+
             </div>
         </div>
     </form>

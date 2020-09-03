@@ -89,7 +89,7 @@ hr {
 
 .results {
     color: var(--lightest-brown);
-    font-size: min(2.5vw, 20px);
+    font-size: min(2.5vw, 18px);
     border-right: 2px dashed var(--lightest-brown);
 }
 
@@ -97,7 +97,8 @@ hr {
     margin-right: 4px;
 }
 
-.fa-plus-circle {
-    font-size: min(3.5vw, 36px);
+.fa-plus-circle,.fa-search {
+    font-size: min(4vw, 36px);
     color: #fffaf0;
 }
+
