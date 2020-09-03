@@ -10,4 +10,5 @@ var editCoffee = document.querySelector("#edit-coffee");
 var editRoastSelection = document.querySelector("#edit-roast-selection");
 var addDiv = document.querySelector("#add-div");
 var addIcon = document.querySelector("#add-icon");
-var searchBtn = document.querySelector("#search-btn");
+var searchIcon = document.querySelector("#search-icon");
+var resultsText = document.querySelector("#results");

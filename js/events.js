@@ -8,30 +8,24 @@ function addHoverOff() {
     addIcon.style.color = "floralwhite";
 }
 
-function toggle() {
-    if(newCoffee.classList.value.indexOf("d-none") !== -1) {
-        newCoffee.classList.remove("d-none");
-        searchCoffee.classList.add("d-none");
-        addRoast.classList.remove("d-none");
-        roastSelection.classList.add("d-none");
-        addCoffeeButton.classList.remove("d-none");
-        document.getElementById("results").classList.add("d-none");
-        document.getElementById("add-icon").classList.add("d-none");
-        searchBtn.classList.remove("d-none");
-        searchCoffee.value = '';
-        updateCoffees();
-    }else {
-        newCoffee.classList.add("d-none");
-        searchCoffee.classList.remove("d-none");
-        addRoast.classList.add("d-none");
-        roastSelection.classList.remove("d-none");
-        addCoffeeButton.classList.add("d-none");
-        document.getElementById("results").classList.remove("d-none");
-        document.getElementById("add-icon").classList.remove("d-none");
-        searchBtn.classList.add("d-none");
-    }
+function hasDisplayNone(element) {
+    return (element.classList.value.indexOf("d-none") !== -1);
 }
 
+function toggle() {
+
+    let addSectionElements = [newCoffee, addRoast, searchIcon, addCoffeeButton];
+    let searchSectionElements = [searchCoffee, roastSelection, resultsText, addIcon];
+    let elementsToUpdate = addSectionElements.concat(searchSectionElements);
+
+    elementsToUpdate.forEach(element => {
+        if (hasDisplayNone(element)) {
+            element.classList.remove("d-none");
+        } else {
+            element.classList.add("d-none");
+        }
+    });
+}
 
 addCoffeeButton.addEventListener('click', addCoffee);
 searchCoffee.addEventListener('input', updateCoffees);
