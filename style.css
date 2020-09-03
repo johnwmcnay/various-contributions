@@ -15,7 +15,8 @@ body {
     margin-bottom: 10px;
 }
 img {
-    width: 40vw;
+    width: min(35vw, 350px);
+    margin-bottom: 15px;
 }
 
 .card-title {
