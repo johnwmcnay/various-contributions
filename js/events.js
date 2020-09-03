@@ -18,6 +18,8 @@ function toggle() {
         document.getElementById("results").classList.add("d-none");
         document.getElementById("add-icon").classList.add("d-none");
         searchBtn.classList.remove("d-none");
+        searchCoffee.value = '';
+        updateCoffees();
     }else {
         newCoffee.classList.add("d-none");
         searchCoffee.classList.remove("d-none");
