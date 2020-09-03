@@ -32,16 +32,6 @@ function renderCoffee(coffee) {
         deleteDiv.classList.remove("d-none");
     });
 
-    div.addEventListener("click", function( event ) {
-        document.querySelector('#editName').innerText = coffee.name;
-        document.querySelector('#editRoast').innerText = coffee.roast;
-        stagedItem.coffee = coffee;
-
-        editCoffee.value = coffee.name;
-        editRoastSelection.value = coffee.roast;
-
-    });
-
     wrapper.addEventListener("mouseleave", function( event ) {
         wrapper.classList.add('card');
         wrapper.classList.remove('card-hover');
@@ -80,7 +70,7 @@ function updateCoffees(e) {
 
         //looks to include coffees with the correct roast and search string filter
         let coffeeID = "coffee" + coffee.id;
-        if ((coffee.roast === selectedRoast || selectedRoast === "all roasts") && hasCoffee(coffee)) {
+        if ((coffee.roast === selectedRoast || selectedRoast === "all") && hasCoffee(coffee)) {
             document.getElementById(coffeeID).classList.remove("d-none");
         } else {
             document.getElementById(coffeeID).classList.add("d-none");

@@ -56,21 +56,6 @@ img {
     padding: 0;
 }
 
-/*.coffee {*/
-/*    background-color: gray;*/
-/*    display: inline-block;*/
-/*    height: 15vw;*/
-/*    margin: 2px;*/
-/*}*/
-
-/*.coffee:hover {*/
-/*    background-color: purple;*/
-/*}*/
-
-.fa-edit:hover {
-    color: var(--chocolate);
-}
-
 .fa-trash-alt {
     float: right;
     position: absolute;
@@ -104,16 +89,16 @@ hr {
     border-right: 2px dashed var(--lightest-brown);
 }
 
-#numOfResults {
-    margin-right: 4px;
-}
-
 .fa-plus-circle,.fa-search {
     font-size: min(4vw, 36px);
     color: #fffaf0;
 }
 
-p{
+#search-icon:hover {
+    color: var(--light-brown);
+}
+
+p {
     margin: 0;
 }
 

@@ -19,9 +19,9 @@
     </div>
 
 
-    <form class="sticky p-0">
+    <form class="sticky">
         <div class="form-row">
-            <div class="col-6 d-flex align-items-end" style="padding-right: 8px">
+            <div class="col-6 d-flex align-items-end">
                 <label for="search"></label>
                 <input class="form-control" type="text" id="search" name="search"
                        placeholder="Search for coffee by name">
@@ -30,10 +30,10 @@
                 <input class="form-control d-none" type="text" id="add-coffee" name="add" placeholder="Add coffee">
 
             </div>
-            <div class="col-2 col-lg-3" style="padding-left: 8px">
+            <div class="col-2 col-lg-3">
                 <!--                <label class="control-label" for="roast-selection">Filter by roast</label>-->
                 <select class="form-control" id="roast-selection">
-                    <option>all roasts</option>
+                    <option>all</option>
                     <option>light</option>
                     <option>medium</option>
                     <option>dark</option>
@@ -46,7 +46,7 @@
                 </select>
             </div>
             <div class="col-3 col-lg-2 results d-flex justify-content-center align-items-center">
-                <span id="results"><span id="numOfResults"></span> results found</span>
+                <span id="results" class="m-0"><span id="numOfResults"></span> results found</span>
                 <input class="form-control d-none" id="add-submit" type="submit"/>
             </div>
             <div class="col-1 d-flex align-items-center justify-content-center" id="add-div">
@@ -56,25 +56,9 @@
 
         </div>
     </form>
-    <form class="d-none">
-        <div class="form-row">
-            <!--            <div class="col-12">-->
-            <!--                <label class="control-label" for="add-coffee">Add coffee</label>-->
-            <!--                <input class="form-control" type="text" id="add-coffee" name="add">-->
-            <!--            </div>-->
-            <div class="col-12">
-                <!--                <label class="control-label" for="add-roast-selection">Select Roast</label>-->
-                <!--                <select class="form-control" id="add-roast-selection">-->
-                <!--                    <option>light</option>-->
-                <!--                    <option>medium</option>-->
-                <!--                    <option>dark</option>-->
-                <!--                </select>-->
-
-            </div>
-        </div>
-    </form>
 
     <div class="row justify-content-center m-3" id="coffees"></div>
+
 </div>
 
 <div id="staged-item" role="button" class="d-none" tabindex="0">

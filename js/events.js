@@ -1,10 +1,12 @@
 //handles events to update filters, which updates the screen
 function addHoverOn() {
     addIcon.style.color = "#AB947E";
+    document.querySelector("#search-icon").style.color = "#AB947E";
 }
 
 function addHoverOff() {
     addIcon.style.color = "floralwhite";
+    document.querySelector("#search-icon").style.color = "floralwhite";
 }
 
 function hasDisplayNone(element) {
@@ -33,15 +35,3 @@ editRoastSelection.addEventListener('change', updateEdit);
 addDiv.addEventListener('mouseenter', addHoverOn)
 addDiv.addEventListener('mouseleave', addHoverOff);
 addDiv.addEventListener('click', toggle);
-
-// $(function () {
-//     $('[data-toggle="popover"]').popover({
-//         'html': true,
-//         'container': 'body',
-//         'content': function() {
-//             return $("#staged-item").html();
-//         },
-//     }
-//
-//     );
-// })
