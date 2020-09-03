@@ -20,7 +20,8 @@ body {
     display: flex;
     justify-content: center;
     height: min(15vw, 100px);
-    position: relative;
+    /*position: relative;*/
+    padding: 0;
 }
 
 .card:hover {
