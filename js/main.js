@@ -7,22 +7,23 @@ function editItem() {
 
 function deleteItem() {
 
-    for (let coffee of coffees) {
-
-        if (coffee.name === stagedItem.coffee.name) {
-            //delete the item
-            coffees.splice(coffees.indexOf(coffee), 1);
-        }
-    }
-
-    localStorage.setItem("coffees", JSON.stringify(coffees));
-    stagedItem.innerText = '';
-    delete stagedItem.coffee.name;
-    delete stagedItem.coffee.roast;
-    editCoffee.value = '';
-    editRoastSelection.value = '';
-
-    updateCoffees();
+    // for (let coffee of coffees) {
+    //
+    //     if (coffee.name === ) {
+    //         //delete the item
+    //         coffees.splice(coffees.indexOf(coffee), 1);
+    //         break;
+    //     }
+    // }
+    //
+    // localStorage.setItem("coffees", JSON.stringify(coffees));
+    // stagedItem.innerText = '';
+    // delete stagedItem.coffee.name;
+    // delete stagedItem.coffee.roast;
+    // editCoffee.value = '';
+    // editRoastSelection.value = '';
+    //
+    // updateCoffees();
 }
 
 function undoDelete() {

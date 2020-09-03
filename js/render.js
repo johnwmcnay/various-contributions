@@ -2,14 +2,10 @@
 function renderCoffee(coffee) {
 
     let wrapper = document.createElement("div");
-    wrapper.classList.add("card", "col-5", "m-2");
-    wrapper.setAttribute("data-toggle", "popover");
-    // wrapper.setAttribute("data-content", $("#stage").html());
-    console.log($("#stage").html())
-    wrapper.setAttribute("title", "title");
-
-    let popoverDiv = document.createElement("div");
-
+    wrapper.classList.add("card", "col-5", "col-lg-3", "col-xl-2", "m-2");
+    // wrapper.setAttribute("data-toggle", "popover");
+    // wrapper.setAttribute("title", "title");
+    wrapper.id = "coffee" + coffee.id;
 
     let div = document.createElement("div");
     div.classList.add("card-body");
@@ -22,32 +18,32 @@ function renderCoffee(coffee) {
     p.innerText = coffee.roast;
     p.classList.add("card-text");
 
-    let edit = document.createElement("div");
-    edit.innerHTML = '<i class="far fa-edit"></i>';
-    edit.style.display = "none";
+    // let edit = document.createElement("div");
+    // edit.innerHTML = '<i class="far fa-edit"></i>';
+    // edit.style.display = "none";
 
-    div.addEventListener("mouseenter", function( event ) {
-        edit.style.display = "inline-block";
+    wrapper.addEventListener("mouseenter", function( event ) {
+        wrapper.classList.remove('card');
+        wrapper.classList.add('card-hover');
     });
 
     div.addEventListener("click", function( event ) {
         document.querySelector('#editName').innerText = coffee.name;
         document.querySelector('#editRoast').innerText = coffee.roast;
-        stagedItem.coffee = coffee
+        stagedItem.coffee = coffee;
 
         editCoffee.value = coffee.name;
         editRoastSelection.value = coffee.roast;
 
     });
 
-    div.addEventListener("mouseleave", function( event ) {
-        edit.style.display = "none";
+    wrapper.addEventListener("mouseleave", function( event ) {
+        wrapper.classList.add('card');
+        wrapper.classList.remove('card-hover');
     });
-
 
     div.appendChild(heading);
     div.appendChild(p);
-    div.appendChild(edit);
     wrapper.appendChild(div);
 
     return wrapper;
@@ -72,24 +68,29 @@ function updateCoffees(e) {
         e.preventDefault(); // don't submit the form, we just want to update the data
     }
     var selectedRoast = roastSelection.value;
-    var filteredCoffees = [];
+
+    console.log(coffees);
+
     coffees.forEach(function(coffee) {
 
         //looks to include coffees with the correct roast and search string filter
-        if ((coffee.roast === selectedRoast || selectedRoast === "All") && hasCoffee(coffee)) {
-            filteredCoffees.push(coffee);
+        if ((coffee.roast === selectedRoast || selectedRoast === "all roasts") && hasCoffee(coffee)) {
+
+            let coffeeID = "coffee" + coffee.id;
+            console.log(coffeeID);
+            document.getElementById(coffeeID).classList.remove("d-none");
+        } else {
+            document.getElementById(coffeeID).classList.add("d-none");
         }
     });
 
-    //updates the screen based on user input
-    renderCoffees(filteredCoffees);
 }
 
 //returns whether user-inputted text matches and part of a coffee name; case-insensitive
 function hasCoffee(coffee){
 
     var coffeeName = searchCoffee.value.toLowerCase();
-    return(coffee.name.toLowerCase().indexOf(coffeeName) !== -1);
+    return (coffee.name.toLowerCase().indexOf(coffeeName) !== -1);
 
 }
 
@@ -112,5 +113,6 @@ function addCoffee(e){
         localStorage.setItem("coffees", JSON.stringify(coffees));
     }
 
+    coffeeDiv.appendChild(renderCoffee(updatedCoffee));
     updateCoffees(e);
 }

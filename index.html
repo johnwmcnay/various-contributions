@@ -33,7 +33,7 @@
             <div class="col-2 col-lg-3" style="padding-left: 8px">
                 <!--                <label class="control-label" for="roast-selection">Filter by roast</label>-->
                 <select class="form-control" id="roast-selection">
-                    <option>All</option>
+                    <option>all roasts</option>
                     <option>light</option>
                     <option>medium</option>
                     <option>dark</option>
@@ -76,11 +76,13 @@
 
     <div class="row justify-content-center m-3" id="coffees"></div>
 </div>
-<!--    <div id="stage" class="d-none">-->
-<div id="staged-item" class="d-none">
-    Name: <span id="editName"></span>
+
+<div id="staged-item" role="button" class="d-none" tabindex="0">
+    Name: <a role="button" class="btn" id="editName"></a>
+    <button>test</button>
+
     <br>
-    Roassst: <span id="editRoast"></span>
+    Roast: <span id="editRoast"></span>
     <form id="editForm">
         <button id="edit-item" onclick="editItem()">Edit</button>
 
@@ -94,10 +96,7 @@
         </select>
         <button id="delete" onclick="deleteItem()">Delete</button>
     </form>
-</div>
-<div id="testers" class="d-none">
-    <button>SHOW ME</button>
-</div>
+<a>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

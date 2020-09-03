@@ -46,8 +46,15 @@ img {
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(195,169,149,1) 100%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
+    padding: 0;
 }
 
+.card-hover {
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(145, 62, 62) 100%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    padding: 0;
+}
 
 /*.coffee {*/
 /*    background-color: gray;*/

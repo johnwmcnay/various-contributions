@@ -1,7 +1,6 @@
 //handles events to update filters, which updates the screen
 function addHoverOn() {
     addIcon.style.color = "#AB947E";
-
 }
 
 function addHoverOff() {
@@ -30,18 +29,19 @@ function toggle() {
 addCoffeeButton.addEventListener('click', addCoffee);
 searchCoffee.addEventListener('input', updateCoffees);
 roastSelection.addEventListener('change', updateCoffees);
-// editRoastSelection.addEventListener('change', updateEdit);
+editRoastSelection.addEventListener('change', updateEdit);
 addDiv.addEventListener('mouseenter', addHoverOn)
 addDiv.addEventListener('mouseleave', addHoverOff);
 addDiv.addEventListener('click', toggle);
 
-$(function () {
-    $('[data-toggle="popover"]').popover({
-        'html': true,
-        'container': 'body',
-        'content': function() {
-            return $("#testers").html()}
-    }
-
-    );
-})
+// $(function () {
+//     $('[data-toggle="popover"]').popover({
+//         'html': true,
+//         'container': 'body',
+//         'content': function() {
+//             return $("#staged-item").html();
+//         },
+//     }
+//
+//     );
+// })
