@@ -5,25 +5,27 @@ function editItem() {
     //TODO: create ability to edit
 }
 
-function deleteItem() {
+function deleteItem(x) {
 
-    // for (let coffee of coffees) {
-    //
-    //     if (coffee.name === ) {
-    //         //delete the item
-    //         coffees.splice(coffees.indexOf(coffee), 1);
-    //         break;
-    //     }
-    // }
-    //
-    // localStorage.setItem("coffees", JSON.stringify(coffees));
+    let elementToRemove = function() {
+        for (let coffee of coffees) {
+
+            if (coffee.name === x.name) {
+                //delete the item
+                coffees.splice(coffees.indexOf(coffee), 1);
+                return coffee;
+            }
+        }
+    }();
+
+
+    document.getElementById("coffee" + elementToRemove.id).classList.add("d-none");
+    localStorage.setItem("coffees", JSON.stringify(coffees));
     // stagedItem.innerText = '';
-    // delete stagedItem.coffee.name;
-    // delete stagedItem.coffee.roast;
     // editCoffee.value = '';
     // editRoastSelection.value = '';
-    //
-    // updateCoffees();
+
+    updateCoffees();
 }
 
 function undoDelete() {

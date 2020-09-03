@@ -18,13 +18,18 @@ function renderCoffee(coffee) {
     p.innerText = coffee.roast;
     p.classList.add("card-text");
 
-    // let edit = document.createElement("div");
-    // edit.innerHTML = '<i class="far fa-edit"></i>';
-    // edit.style.display = "none";
+    let deleteDiv = document.createElement("div");
+    deleteDiv.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    deleteDiv.classList.add("d-none");
+
+    deleteDiv.addEventListener('click', function() {
+        deleteItem(coffee);
+    });
 
     wrapper.addEventListener("mouseenter", function( event ) {
         wrapper.classList.remove('card');
         wrapper.classList.add('card-hover');
+        deleteDiv.classList.remove("d-none");
     });
 
     div.addEventListener("click", function( event ) {
@@ -40,10 +45,12 @@ function renderCoffee(coffee) {
     wrapper.addEventListener("mouseleave", function( event ) {
         wrapper.classList.add('card');
         wrapper.classList.remove('card-hover');
+        deleteDiv.classList.add("d-none");
     });
 
     div.appendChild(heading);
     div.appendChild(p);
+    div.appendChild(deleteDiv);
     wrapper.appendChild(div);
 
     return wrapper;
@@ -69,15 +76,11 @@ function updateCoffees(e) {
     }
     var selectedRoast = roastSelection.value;
 
-    console.log(coffees);
-
     coffees.forEach(function(coffee) {
 
         //looks to include coffees with the correct roast and search string filter
+        let coffeeID = "coffee" + coffee.id;
         if ((coffee.roast === selectedRoast || selectedRoast === "all roasts") && hasCoffee(coffee)) {
-
-            let coffeeID = "coffee" + coffee.id;
-            console.log(coffeeID);
             document.getElementById(coffeeID).classList.remove("d-none");
         } else {
             document.getElementById(coffeeID).classList.add("d-none");

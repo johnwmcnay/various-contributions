@@ -71,12 +71,16 @@ img {
     color: var(--chocolate);
 }
 
-.fa-edit {
+.fa-trash-alt {
     float: right;
     position: absolute;
     font-size: min(2.5vw, 20px);
-    bottom: 20px;
-    right: 5px;
+    top: 15px;
+    right: 15px;
+}
+
+.fa-trash-alt:hover {
+    color: darkred;
 }
 
 hr {
