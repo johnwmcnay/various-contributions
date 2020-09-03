@@ -6,8 +6,16 @@
 }
 
 body {
-    /*background-color: var(--lightest-brown);*/
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(195,169,149,0.7413340336134453) 100%);
     font-family: 'Lora', serif;
+}
+.header{
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(195,169,149,1) 100%);
+    border-bottom: 3px solid var(--chocolate);
+    margin-bottom: 10px;
+}
+img {
+    width: 40vw;
 }
 
 .card-title {
@@ -34,18 +42,11 @@ body {
 }
 
 .card {
-    background-color: var(--lightest-brown);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(195,169,149,1) 100%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
 }
 
-table {
-    border-collapse: collapse;
-    margin: 15px 0;
-}
-
-td, th {
-    border: 1px solid black;
-    padding: 5px 10px;
-}
 
 /*.coffee {*/
 /*    background-color: gray;*/
@@ -81,6 +82,7 @@ hr {
     z-index: 1000;
     border-radius: 5px;
     background-color: var(--chocolate);
+    opacity: 85%;
 }
 
 .results {
