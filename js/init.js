@@ -1,5 +1,5 @@
 
-//gets data from localStorage if it exists, otherwises assigns it the default array
+//gets data from localStorage if it exists, otherwise it returns and assigns the default array
 let coffees = function() {
     if (localStorage.getItem("coffees") !== null) {
         //JSON.parse used to change item back into an object
