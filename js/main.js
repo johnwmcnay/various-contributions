@@ -22,14 +22,14 @@ function deleteItem(coffeeToDelete) {
     //indicates that the item will not be drawn by changing its ID to a negative number
     elementToRemove.id *= -1;
 
-    //update local storage on every change
+    //update local storage on every "deletion"
     localStorage.setItem("coffees", JSON.stringify(coffees));
 
     updateCoffees();
 }
 
 //returns whether user-inputted text matches and part of a coffee name; case-insensitive
-function hasCoffee(coffee){
+function hasPartialNameMatch(coffee){
 
     let coffeeName = coffee.name.toLowerCase();
     let searchText = searchCoffee.value.toLowerCase();
@@ -53,7 +53,7 @@ function addCoffee(e){
     //add new coffee to the main array
     coffees.push(updatedCoffee);
 
-    //and update the local storage to make it persistent, if possible
+    //update the local storage to make it persistent, if possible
     if(localStorage) {
         //JSON.stringify used as you can only use localStorage with strings
         localStorage.setItem("coffees", JSON.stringify(coffees));
@@ -68,12 +68,12 @@ function addCoffee(e){
 
 function addHoverOn() {
     addIcon.style.color = "#AB947E";
-    document.querySelector("#search-icon").style.color = "#AB947E";
+    searchIcon.style.color = "#AB947E";
 }
 
 function addHoverOff() {
     addIcon.style.color = "floralwhite";
-    document.querySelector("#search-icon").style.color = "floralwhite";
+    searchIcon.style.color = "floralwhite";
 }
 
 //passes in an HTML element and returns true if it contains the class "d-none"
@@ -96,4 +96,24 @@ function toggle() {
             element.classList.add("d-none");
         }
     });
+}
+
+//handles the edge case of '1 result' so it doesn't display at '1 results'
+function updatePlurality(count) {
+    let element = document.querySelector("#plural");
+
+    if (count === 1) {
+        element.innerText = "";
+    } else {
+        element.innerText = "s";
+    }
+}
+
+function updateResults(count) {
+    updatePlurality(count);
+    setResultsNumber(count);
+}
+
+function setResultsNumber(count) {
+    numOfResults.innerText = count.toString();
 }

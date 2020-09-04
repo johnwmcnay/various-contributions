@@ -55,8 +55,10 @@ function renderCoffee(coffee) {
 function renderCoffees(coffees) {
 
     coffeeDiv.innerHTML = '';
+
     let coffeeCount = 0;
 
+    //goes the an array of coffee objects and renders it to the screen only if it has a positive ID
     for (let coffee of coffees) {
         if (coffee.id > 0) {
             let child = renderCoffee(coffee);
@@ -65,7 +67,7 @@ function renderCoffees(coffees) {
         }
     }
 
-    numOfResults.innerText = coffeeCount.toString();
+    updateResults(coffeeCount);
 }
 
 //triggered on events to update the screen based on user input
@@ -75,7 +77,6 @@ function updateCoffees(e) {
         e.preventDefault(); // don't submit the form, we just want to update the data
     }
 
-    let selectedRoast = roastSelection.value;
     let coffeeCount = 0;
 
     coffees.forEach(function(coffee) {
@@ -84,20 +85,25 @@ function updateCoffees(e) {
         //will only include objects with a positive number ID
         if (coffee.id > 0) {
             let coffeeID = "coffee" + coffee.id;
-            if ((coffee.roast === selectedRoast || selectedRoast === "all") && hasCoffee(coffee)) {
+            let element = document.getElementById(coffeeID);
+
+            if (matchesFilters(coffee)) {
+                element.classList.remove("d-none");
                 coffeeCount++;
-                document.getElementById(coffeeID).classList.remove("d-none");
             } else {
-                document.getElementById(coffeeID).classList.add("d-none");
+                element.classList.add("d-none");
             }
         }
     });
 
-    if (coffeeCount === 1) {
-        document.querySelector("#plural").innerText = "";
-    } else {
-        document.querySelector("#plural").innerText = "s";
-    }
+    updateResults(coffeeCount);
+}
 
-    numOfResults.innerText = coffeeCount.toString();
+function matchesFilters(coffee) {
+
+    let selectedRoast = roastSelection.value;
+    let matchesRoastFilter = (coffee.roast === selectedRoast || selectedRoast === "all");
+
+    return (matchesRoastFilter & hasPartialNameMatch(coffee));
+
 }
