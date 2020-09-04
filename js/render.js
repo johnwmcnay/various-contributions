@@ -3,8 +3,6 @@ function renderCoffee(coffee) {
 
     let wrapper = document.createElement("div");
     wrapper.classList.add("card", "col-5", "col-lg-3", "col-xl-2", "m-2");
-    // wrapper.setAttribute("data-toggle", "popover");
-    // wrapper.setAttribute("title", "title");
     wrapper.id = "coffee" + coffee.id;
 
     let div = document.createElement("div");
@@ -49,14 +47,18 @@ function renderCoffee(coffee) {
 function renderCoffees(coffees) {
 
     coffeeDiv.innerHTML = '';
+    let count = 0;
 
-    for(var i = 0; i < coffees.length; i++) {
-        let child = renderCoffee(coffees[i]);
-        coffeeDiv.appendChild(child);
+    for(let i = 0; i < coffees.length; i++) {
+        if (coffees[i].id > 0) {
+            let child = renderCoffee(coffees[i]);
+            coffeeDiv.appendChild(child);
+            count++;
+        }
     }
 
     let element = document.getElementById("numOfResults")
-    element.innerText = coffees.length.toString();
+    element.innerText = count.toString();
 }
 
 //triggered on events to update the screen based on user input
@@ -64,25 +66,34 @@ function updateCoffees(e) {
     if (e) {
         e.preventDefault(); // don't submit the form, we just want to update the data
     }
-    var selectedRoast = roastSelection.value;
-
+    let selectedRoast = roastSelection.value;
+    let count = 0;
     coffees.forEach(function(coffee) {
 
         //looks to include coffees with the correct roast and search string filter
-        let coffeeID = "coffee" + coffee.id;
-        if ((coffee.roast === selectedRoast || selectedRoast === "all") && hasCoffee(coffee)) {
-            document.getElementById(coffeeID).classList.remove("d-none");
-        } else {
-            document.getElementById(coffeeID).classList.add("d-none");
+        if (coffee.id > 0) {
+            let coffeeID = "coffee" + coffee.id;
+            if ((coffee.roast === selectedRoast || selectedRoast === "all") && hasCoffee(coffee)) {
+                count++;
+                document.getElementById(coffeeID).classList.remove("d-none");
+            } else {
+                document.getElementById(coffeeID).classList.add("d-none");
+            }
         }
     });
+    if (count === 1) {
+        document.querySelector("#plural").innerText = "";
+    } else {
+        document.querySelector("#plural").innerText = "s";
+    }
 
+    document.querySelector("#numOfResults").innerText = count.toString();
 }
 
 //returns whether user-inputted text matches and part of a coffee name; case-insensitive
 function hasCoffee(coffee){
 
-    var coffeeName = searchCoffee.value.toLowerCase();
+    let coffeeName = searchCoffee.value.toLowerCase();
     return (coffee.name.toLowerCase().indexOf(coffeeName) !== -1);
 
 }
@@ -91,9 +102,9 @@ function hasCoffee(coffee){
 function addCoffee(e){
     e.preventDefault()
 
-    var coffeeName = newCoffee.value;
-    var newRoast = addRoast.value;
-    var updatedCoffee = {
+    let coffeeName = newCoffee.value;
+    let newRoast = addRoast.value;
+    let updatedCoffee = {
         id: coffees.length + 1,
         name: coffeeName,
         roast: newRoast
@@ -107,5 +118,5 @@ function addCoffee(e){
     }
 
     coffeeDiv.appendChild(renderCoffee(updatedCoffee));
-    updateCoffees(e);
+    updateCoffees();
 }

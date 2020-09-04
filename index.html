@@ -46,7 +46,7 @@
                 </select>
             </div>
             <div class="col-3 col-lg-2 results d-flex justify-content-center align-items-center">
-                <span id="results" class="m-0"><span id="numOfResults"></span> results found</span>
+                <span id="results" class="m-0"><span id="numOfResults"></span> result<span id="plural">s</span> found</span>
                 <input class="form-control d-none" id="add-submit" type="submit"/>
             </div>
             <div class="col-1 d-flex align-items-center justify-content-center" id="add-div">
@@ -60,27 +60,6 @@
     <div class="row justify-content-center m-3" id="coffees"></div>
 
 </div>
-
-<div id="staged-item" role="button" class="d-none" tabindex="0">
-    Name: <a role="button" class="btn" id="editName"></a>
-    <button>test</button>
-
-    <br>
-    Roast: <span id="editRoast"></span>
-    <form id="editForm">
-        <button id="edit-item" onclick="editItem()">Edit</button>
-
-        <label for="edit-coffee"></label>
-        <input type="text" id="edit-coffee" name="add" disabled>
-        <label for="edit-roast-selection"></label>
-        <select id="edit-roast-selection" disabled>
-            <option>light</option>
-            <option>medium</option>
-            <option>dark</option>
-        </select>
-        <button id="delete" onclick="deleteItem()">Delete</button>
-    </form>
-<a>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
