@@ -98,12 +98,3 @@ function updateCoffees(e) {
 
     updateResults(coffeeCount);
 }
-
-function matchesFilters(coffee) {
-
-    let selectedRoast = roastSelection.value;
-    let matchesRoastFilter = (coffee.roast === selectedRoast || selectedRoast === "all");
-
-    return (matchesRoastFilter & hasPartialNameMatch(coffee));
-
-}

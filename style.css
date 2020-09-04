@@ -106,3 +106,28 @@ p {
     display:block;
     visibility: visible;
 }
+
+.form-control {
+    background-color: ghostwhite;
+}
+
+.form-control:focus {
+    border: 2px solid var(--light-brown);
+}
+
+#add-submit {
+    max-width: 150px;
+}
+
+#add-submit:enabled:hover {
+    background-color: var(--mocha);
+    color: ghostwhite;
+}
+
+#add-submit:enabled:active {
+    background-color: var(--light-brown);
+}
+
+#add-submit:disabled {
+    background-color: gray;
+}

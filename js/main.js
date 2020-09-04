@@ -32,7 +32,7 @@ function deleteItem(coffeeToDelete) {
 function hasPartialNameMatch(coffee){
 
     let coffeeName = coffee.name.toLowerCase();
-    let searchText = searchCoffee.value.toLowerCase();
+    let searchText = searchCoffee.value.toLowerCase().trim();
 
     return (coffeeName.indexOf(searchText) !== -1);
 
@@ -42,7 +42,7 @@ function hasPartialNameMatch(coffee){
 function addCoffee(e){
     e.preventDefault()
 
-    let coffeeName = newCoffee.value;
+    let coffeeName = newCoffee.value.trim();
     let newRoast = addRoast.value;
     let updatedCoffee = {
         id: coffees.length + 1,
@@ -61,6 +61,9 @@ function addCoffee(e){
 
     //create and attach a new HTML element to represent the new coffe
     coffeeDiv.appendChild(renderCoffee(updatedCoffee));
+
+    newCoffee.value = '';
+    addCoffeeButton.disabled = true;
 
     //makes sure the newly appended coffee is only show if it still meets
     updateCoffees();
@@ -96,6 +99,9 @@ function toggle() {
             element.classList.add("d-none");
         }
     });
+
+    resetFieldsToDefault();
+    updateCoffees();
 }
 
 //handles the edge case of '1 result' so it doesn't display at '1 results'
@@ -115,5 +121,31 @@ function updateResults(count) {
 }
 
 function setResultsNumber(count) {
-    numOfResults.innerText = count.toString();
+    if (count === 0) {
+        numOfResults.innerText = "No";
+    } else {
+        numOfResults.innerText = count.toString();
+    }
+}
+
+function updateAddButton() {
+    addCoffeeButton.disabled = (newCoffee.value.trim() === "");
+}
+
+function resetFieldsToDefault() {
+    searchCoffee.value = ''
+    newCoffee.value = '';
+    roastSelection.value = 'all';
+    addRoast.value = 'light';
+    addCoffeeButton.disabled = true;
+}
+
+
+function matchesFilters(coffee) {
+
+    let selectedRoast = roastSelection.value;
+    let matchesRoastFilter = (coffee.roast === selectedRoast || selectedRoast === "all");
+
+    return (matchesRoastFilter & hasPartialNameMatch(coffee));
+
 }
