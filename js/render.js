@@ -21,9 +21,26 @@ function renderCoffee(coffee) {
     deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
     deleteIcon.classList.add("d-none");
 
+    let editIcon = document.createElement("div");
+    editIcon.innerHTML = '<i class="fas fa-edit"></i>';
+    editIcon.classList.add("d-none");
+
     //adds delete functionality to the delete icon
     deleteIcon.addEventListener('click', function() {
         deleteItem(coffee);
+    });
+
+    editIcon.addEventListener('click', function(event) {
+        let element = document.getElementById("edit-window");
+        element.classList.remove("d-none");
+
+        console.log(element.style);
+        console.log(event.clientY);
+        console.log(event.clientX);
+        console.log(event);
+        element.style.top = event.clientY.toString() + "px";
+        element.style.left = event.clientX.toString() + "px";
+
     });
 
     // the next two events toggle between background colors based on hover state
@@ -32,18 +49,21 @@ function renderCoffee(coffee) {
         coffeeCard.classList.remove('card');
         coffeeCard.classList.add('card-hover');
         deleteIcon.classList.remove("d-none");
+        editIcon.classList.remove("d-none");
     });
 
     coffeeCard.addEventListener("mouseleave", function( event ) {
         coffeeCard.classList.add('card');
         coffeeCard.classList.remove('card-hover');
         deleteIcon.classList.add("d-none");
+        editIcon.classList.add("d-none");
     });
 
     // attach all the elements to the card body
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
     cardBody.appendChild(deleteIcon);
+    cardBody.appendChild(editIcon);
 
     // attach the card body to the card
     coffeeCard.appendChild(cardBody);

@@ -56,6 +56,14 @@ img {
     padding: 0;
 }
 
+.fa-edit {
+    float: left;
+    position: absolute;
+    font-size: min(2.5vw, 20px);
+    top: 15px;
+    left: 15px;
+}
+
 .fa-trash-alt {
     float: right;
     position: absolute;
@@ -64,7 +72,7 @@ img {
     right: 15px;
 }
 
-.fa-trash-alt:hover {
+.fa-trash-alt:hover, .fa-edit:hover {
     color: darkred;
 }
 
@@ -130,4 +138,37 @@ p {
 
 #add-submit:disabled {
     background-color: gray;
+}
+
+#edit-window {
+    background-color: floralwhite;
+    position: fixed;
+    border: 10px solid var(--mocha);
+    border-radius: 10px;
+    opacity: 95%;
+    width: 30%;
+}
+
+#edit-name, #edit-roast, #edit-buttons {
+    margin: 10px 40px;
+
+}
+
+#edit-name, #edit-roast {
+    border: 3px solid var(--chocolate);
+}
+
+.edit-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: floralwhite;
+    font-size: 14px;
+}
+
+#discard-button {
+    background-color: darkred;
+}
+
+#save-button {
+    background-color: var(--light-brown);
 }
