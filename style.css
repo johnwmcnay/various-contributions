@@ -146,11 +146,12 @@ p {
     border: 10px solid var(--mocha);
     border-radius: 10px;
     opacity: 95%;
-    width: 30%;
+    width: 35%;
+    z-index: 1001;
 }
 
 #edit-name, #edit-roast, #edit-buttons {
-    margin: 10px 40px;
+    margin: 10px 30px;
 
 }
 
@@ -169,6 +170,14 @@ p {
     background-color: darkred;
 }
 
+#discard-button:hover {
+    background-color: #be0c0c;
+}
+
 #save-button {
     background-color: var(--light-brown);
+}
+
+#save-button:hover {
+    background-color: var(--mocha);
 }

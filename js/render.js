@@ -12,10 +12,12 @@ function renderCoffee(coffee) {
     let cardTitle = document.createElement("h3");
     cardTitle.classList.add("card-title");
     cardTitle.innerText = coffee.name;
+    cardTitle.id = "coffee" + coffee.id + "name";
 
     let cardText = document.createElement("p");
     cardText.innerText = coffee.roast;
     cardText.classList.add("card-text");
+    cardText.id = "coffee" + coffee.id + "roast";
 
     let deleteIcon = document.createElement("div");
     deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
@@ -31,16 +33,15 @@ function renderCoffee(coffee) {
     });
 
     editIcon.addEventListener('click', function(event) {
-        let element = document.getElementById("edit-window");
-        element.classList.remove("d-none");
-
-        console.log(element.style);
-        console.log(event.clientY);
-        console.log(event.clientX);
-        console.log(event);
-        element.style.top = event.clientY.toString() + "px";
-        element.style.left = event.clientX.toString() + "px";
-
+        editWindow.classList.remove("d-none");
+        // editWindow.style.top = event.clientY.toString() + "px";
+        // editWindow.style.left = event.clientX.toString() + "px";
+        editWindow.style.top = "calc(50% - 103px)";
+        editWindow.style.left = "calc(50% - 171px)";
+        editName.value = coffee.name;
+        editName.focus();
+        editRoast.value = coffee.roast;
+        saveButton.coffee = coffee;
     });
 
     // the next two events toggle between background colors based on hover state

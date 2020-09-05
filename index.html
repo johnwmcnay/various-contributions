@@ -66,10 +66,10 @@
     <!-- populated with coffees via javascript -->
     <div class="row justify-content-center m-3" id="coffees"></div>
 
-    <div id="edit-window" class="ui-widget-content d-none d-flex justify-content-center">
+    <div id="edit-window" class="ui-widget-content d-none justify-content-center">
         <form id="edit-form" class="form-group row justify-content-center m-0">
             <label for="edit-name"></label>
-            <input class="form-control" id="edit-name" name="edit-name" type="text">
+            <input class="form-control" id="edit-name" name="edit-name" type="text" onfocus="this.select()">
             <label for="edit-roast"></label>
             <select class="form-control" id="edit-roast" name="edit-roast">
                 <option>light</option>
@@ -79,7 +79,7 @@
             <div id="edit-buttons" class="row w-100">
                 <input type="button" id="discard-button" class="form-control edit-button col-4" value="Discard">
                 <div class="col-4"></div>
-                <input type="button" id="save-button" class="form-control edit-button col-4" style="align-self: flex-end;" value="Save">
+                <input type="submit" id="save-button" class="form-control edit-button col-4" style="align-self: flex-end;" value="Save">
             </div>
         </form>
     </div>
