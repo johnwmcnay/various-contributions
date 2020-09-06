@@ -21,3 +21,4 @@ let restoreSelectAll = document.querySelector("#restore-select-all");
 let restoreUnselectAll = document.querySelector("#restore-unselect-all");
 let restoreButton = document.querySelector("#restore-item");
 let restoreAnnihilate = document.querySelector("#restore-annihilate");
+let restoreClose = document.querySelector("#restore-close");

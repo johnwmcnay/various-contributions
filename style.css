@@ -166,19 +166,19 @@ p {
     font-size: 14px;
 }
 
-#discard-button {
+#discard-button, #restore-annihilate {
     background-color: darkred;
 }
 
-#discard-button:hover {
+#discard-button:hover, #restore-annihilate:hover {
     background-color: #be0c0c;
 }
 
-#save-button {
+#save-button, #restore-item {
     background-color: var(--light-brown);
 }
 
-#save-button:hover {
+#save-button:hover, #restore-item:hover {
     background-color: var(--mocha);
 }
 
@@ -198,13 +198,14 @@ p {
 #restore-window {
     width: 40%;
     position: fixed;
-    top: 40%;
+    top: calc(50% - 100px);
     left: 30%;
     z-index: 2000;
     border: 5px solid var(--chocolate);
     border-radius: 5px;
     opacity: 95%;
     background-color: floralwhite;
+
 }
 
 .restore-label {
@@ -223,6 +224,7 @@ p {
 
 #restore-buttons {
     background-color: var(--mocha);
+    height: 200px;
 }
 
 .restore-button {
@@ -231,8 +233,35 @@ p {
     margin-bottom: 5px;
 }
 
-/*.restore-list {*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    */
-/*}*/
+#restore-annihilate:hover, #restore-item:hover {
+    color: floralwhite;
+}
+
+#restore-select-all:hover, #restore-unselect-all:hover {
+    background-color: var(--lightest-brown);
+    color: floralwhite;
+}
+
+.restore-list {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.fa-times-circle {
+    position: fixed;
+    right: 31%;
+    top: calc(50% - 105px);
+    font-size: 24px;
+    z-index: 3000;
+    color: var(--mocha);
+    background-color: floralwhite;
+    opacity: 50%;
+    border: 0;
+    border-radius: 50%;
+}
+
+.fa-times-circle:hover {
+    background-color: var(--chocolate);
+    color: var(--lightest-brown);
+    opacity: 100%;
+}

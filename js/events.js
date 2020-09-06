@@ -7,13 +7,37 @@ addSearchToggle.addEventListener('click', toggle);
 newCoffee.addEventListener('input', updateAddButton);
 discardButton.addEventListener('click', discardChanges);
 saveButton.addEventListener('click', saveChanges);
-restoreTrashIcon.addEventListener('click', restoreDeletedItems);
+restoreTrashIcon.addEventListener('click', toggleRestoreList);
 restoreSelectAll.addEventListener('click', selectAll);
 restoreUnselectAll.addEventListener('click', unselectAll);
-restoreAnnihilate.addEventListener('click', test);
+restoreAnnihilate.addEventListener('click', annihilate);
 restoreButton.addEventListener('click', restore);
+restoreClose.addEventListener('click', closeRestore);
 
-function test() {
+function closeRestore() {
+    restoreWindow.classList.add("d-none");
+}
+
+function annihilate() {
+
+    for (let item of restoreWindow.childNodes[0].childNodes) {
+        let input = item.childNodes[0];
+        console.log(input.coffee);
+        if (input.checked) {
+            let coffeeID = "coffee" + (input.coffee.id * -1);
+            let coffeeIndex = (input.coffee.id * -1) - 1;
+            delete coffees[coffeeIndex];
+            if (document.getElementById(coffeeID) !== null) {
+                coffeeDiv.removeChild(document.getElementById(coffeeID));
+            }
+        }
+    }
+    if(localStorage) {
+        //JSON.stringify used as you can only use localStorage with strings
+        localStorage.setItem("coffees", JSON.stringify(coffees));
+    }
+
+    updateRestoreList();
 
 }
 
@@ -22,21 +46,28 @@ function restore() {
     for (let item of restoreWindow.childNodes[0].childNodes) {
         let input = item.childNodes[0]
         if (input.checked) {
-            console.log(input.coffee.id * -1);
             let coffeeToAdd = {
                 id: input.coffee.id * -1,
                 name: input.coffee.name,
                 roast: input.coffee.roast,
             }
             coffees.splice(coffeeToAdd.id - 1, 1, coffeeToAdd);
+
+            let element = renderCoffee(coffeeToAdd);
+            if (document.getElementById("coffee" + coffeeToAdd.id) !== null) {
+                coffeeDiv.replaceChild(element, document.getElementById("coffee" + coffeeToAdd.id));
+            } else {
+                coffeeDiv.appendChild(element);
+            }
+            updateCoffees();
         }
     }
     if(localStorage) {
         //JSON.stringify used as you can only use localStorage with strings
         localStorage.setItem("coffees", JSON.stringify(coffees));
     }
-    updateCoffees();
-    restoreDeletedItems();
+
+    updateRestoreList();
 }
 
 function unselectAll() {
@@ -51,19 +82,27 @@ function selectAll() {
     }
 }
 
-function restoreDeletedItems() {
-
-    if (restoreWindow.classList.contains("d-none")) {
+function toggleRestoreList() {
+    if (restoreWindow.classList.contains("d-none") && editWindow.classList.contains("d-none")) {
         restoreWindow.classList.remove("d-none");
+    } else {
+        restoreWindow.classList.add("d-none");
     }
+    updateRestoreList();
+}
+
+function updateRestoreList() {
 
     let even = true;
     let items = document.createElement("div");
     items.classList.add("col-8");
     items.classList.add("p-0");
     items.classList.add("restore-list");
-
     for (let coffee of coffees) {
+        if (!coffee) {
+            continue;
+        }
+
         if (coffee.id < 0) {
             let element = document.createElement("input");
             let label = document.createElement("label");
@@ -87,8 +126,6 @@ function restoreDeletedItems() {
         }
     }
     restoreWindow.replaceChild(items, restoreWindow.childNodes[0]);
-
-
 }
 
 function saveChanges(e) {

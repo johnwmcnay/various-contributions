@@ -7,6 +7,9 @@ function deleteItem(coffeeToDelete) {
     //searches and returns the correct coffee object to stage for deletion
     let elementToRemove = function() {
         for (let coffee of coffees) {
+            if (!coffee) {
+                continue;
+            }
 
             if (coffee.id === coffeeToDelete.id) {
                 return coffee;
@@ -26,6 +29,7 @@ function deleteItem(coffeeToDelete) {
     localStorage.setItem("coffees", JSON.stringify(coffees));
 
     updateCoffees();
+    updateRestoreList();
 }
 
 //returns whether user-inputted text matches and part of a coffee name; case-insensitive

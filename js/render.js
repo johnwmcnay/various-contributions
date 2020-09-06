@@ -33,15 +33,15 @@ function renderCoffee(coffee) {
     });
 
     editIcon.addEventListener('click', function(event) {
-        editWindow.classList.remove("d-none");
-        // editWindow.style.top = event.clientY.toString() + "px";
-        // editWindow.style.left = event.clientX.toString() + "px";
-        editWindow.style.top = "calc(50% - 103px)";
-        editWindow.style.left = "calc(50% - 171px)";
-        editName.value = coffee.name;
-        editName.focus();
-        editRoast.value = coffee.roast;
-        saveButton.coffee = coffee;
+        if (restoreWindow.classList.contains("d-none")) {
+            editWindow.classList.remove("d-none");
+            editWindow.style.top = "calc(50% - 103px)";
+            editWindow.style.left = "calc(50% - 171px)";
+            editName.value = coffee.name;
+            editName.focus();
+            editRoast.value = coffee.roast;
+            saveButton.coffee = coffee;
+        }
     });
 
     // the next two events toggle between background colors based on hover state
@@ -81,6 +81,10 @@ function renderCoffees(coffees) {
 
     //goes the an array of coffee objects and renders it to the screen only if it has a positive ID
     for (let coffee of coffees) {
+        if (coffee === null) {
+            continue;
+        }
+
         if (coffee.id > 0) {
             let child = renderCoffee(coffee);
             coffeeDiv.appendChild(child);
@@ -104,15 +108,17 @@ function updateCoffees(e) {
 
         //looks to include coffees with the correct roast and search string filter
         //will only include objects with a positive number ID
-        if (coffee.id > 0) {
-            let coffeeID = "coffee" + coffee.id;
-            let element = document.getElementById(coffeeID);
+        if (coffee !== null) {
+            if (coffee.id > 0) {
+                let coffeeID = "coffee" + coffee.id;
+                let element = document.getElementById(coffeeID);
 
-            if (matchesFilters(coffee)) {
-                element.classList.remove("d-none");
-                coffeeCount++;
-            } else {
-                element.classList.add("d-none");
+                if (matchesFilters(coffee)) {
+                    element.classList.remove("d-none");
+                    coffeeCount++;
+                } else {
+                    element.classList.add("d-none");
+                }
             }
         }
     });
