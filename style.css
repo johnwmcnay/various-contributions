@@ -148,6 +148,8 @@ p {
     opacity: 95%;
     width: 35%;
     z-index: 1001;
+    top: calc(50% - 103px);
+    left: calc(50% - 171px);
 }
 
 #edit-name, #edit-roast, #edit-buttons {

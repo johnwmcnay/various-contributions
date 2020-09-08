@@ -3,71 +3,73 @@ function renderCoffee(coffee) {
 
     //creates a div as a card along with other bootstrap classes
     let coffeeCard = document.createElement("div");
-    coffeeCard.classList.add("card", "col-5", "col-lg-3", "col-xl-2", "m-2");
-    coffeeCard.id = "coffee" + coffee.id;
+    $(coffeeCard)
+        .addClass("card col-5 col-lg-3 col-xl-2 m-2")
+        .attr('id', "coffee" + coffee.id);
 
     let cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
+    $(cardBody).addClass("card-body");
 
     let cardTitle = document.createElement("h3");
-    cardTitle.classList.add("card-title");
-    cardTitle.innerText = coffee.name;
-    cardTitle.id = "coffee" + coffee.id + "name";
+    $(cardTitle)
+        .addClass("card-title")
+        .text(coffee.name)
+        .attr('id', "coffee" + coffee.id + "name");
 
     let cardText = document.createElement("p");
-    cardText.innerText = coffee.roast;
-    cardText.classList.add("card-text");
-    cardText.id = "coffee" + coffee.id + "roast";
+    $(cardText)
+        .text(coffee.roast)
+        .addClass("card-text")
+        .attr('id', "coffee" + coffee.id + "roast");
 
     let deleteIcon = document.createElement("div");
-    deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
-    deleteIcon.classList.add("d-none");
+    $(deleteIcon)
+        .html('<i class="fas fa-trash-alt"></i>')
+        .addClass("d-none")
+        .click(function() {
+            deleteItem(coffee);
+        });
 
     let editIcon = document.createElement("div");
-    editIcon.innerHTML = '<i class="fas fa-edit"></i>';
-    editIcon.classList.add("d-none");
+    $(editIcon)
+        .html('<i class="fas fa-edit"></i>')
+        .addClass("d-none")
+        .click(function(event) {
+            if ($('#restore-window').hasClass("d-none")) {
 
-    //adds delete functionality to the delete icon
-    deleteIcon.addEventListener('click', function() {
-        deleteItem(coffee);
-    });
+                $('#edit-window').removeClass("d-none");
 
-    editIcon.addEventListener('click', function(event) {
-        if (restoreWindow.classList.contains("d-none")) {
-            editWindow.classList.remove("d-none");
-            editWindow.style.top = "calc(50% - 103px)";
-            editWindow.style.left = "calc(50% - 171px)";
-            editName.value = coffee.name;
-            editName.focus();
-            editRoast.value = coffee.roast;
-            saveButton.coffee = coffee;
+                $('#edit-name')
+                    .val(coffee.name)
+                    .focus()
+
+                $('#edit-roast').val(coffee.roast);
+
+                $('#save-button').data('coffee', coffee);
+
+            }
+        });
+
+    $(coffeeCard).hover(
+        function( event ) {
+            $(coffeeCard)
+                .removeClass('card')
+                .addClass('card-hover');
+            $(deleteIcon).removeClass("d-none");
+            $(editIcon).removeClass("d-none");
+        },
+        function( event ) {
+            $(coffeeCard)
+                .addClass('card')
+                .removeClass('card-hover');
+            $(deleteIcon).addClass("d-none");
+            $(editIcon).addClass("d-none");
         }
-    });
-
-    // the next two events toggle between background colors based on hover state
-    // the delete icon is only displayed when the card is hovered over
-    coffeeCard.addEventListener("mouseenter", function( event ) {
-        coffeeCard.classList.remove('card');
-        coffeeCard.classList.add('card-hover');
-        deleteIcon.classList.remove("d-none");
-        editIcon.classList.remove("d-none");
-    });
-
-    coffeeCard.addEventListener("mouseleave", function( event ) {
-        coffeeCard.classList.add('card');
-        coffeeCard.classList.remove('card-hover');
-        deleteIcon.classList.add("d-none");
-        editIcon.classList.add("d-none");
-    });
+    );
 
     // attach all the elements to the card body
-    cardBody.appendChild(cardTitle);
-    cardBody.appendChild(cardText);
-    cardBody.appendChild(deleteIcon);
-    cardBody.appendChild(editIcon);
-
-    // attach the card body to the card
-    coffeeCard.appendChild(cardBody);
+    $(cardBody).append(cardTitle, cardText, deleteIcon, editIcon);
+    $(coffeeCard).append(cardBody);
 
     // returned the new card element
     return coffeeCard;
@@ -75,7 +77,9 @@ function renderCoffee(coffee) {
 
 function renderCoffees(coffees) {
 
-    coffeeDiv.innerHTML = '';
+    $('#coffees').html('');
+
+    // coffeeDiv.innerHTML = '';
 
     let coffeeCount = 0;
 
@@ -87,7 +91,8 @@ function renderCoffees(coffees) {
 
         if (coffee.id > 0) {
             let child = renderCoffee(coffee);
-            coffeeDiv.appendChild(child);
+            $('#coffees').append(child);
+            // coffeeDiv.appendChild(child);
             coffeeCount++;
         }
     }
@@ -110,14 +115,14 @@ function updateCoffees(e) {
         //will only include objects with a positive number ID
         if (coffee !== null) {
             if (coffee.id > 0) {
-                let coffeeID = "coffee" + coffee.id;
-                let element = document.getElementById(coffeeID);
+                let coffeeID = "#coffee" + coffee.id;
+                let element = $(coffeeID);
 
                 if (matchesFilters(coffee)) {
-                    element.classList.remove("d-none");
+                    $(element).removeClass("d-none");
                     coffeeCount++;
                 } else {
-                    element.classList.add("d-none");
+                    $(element).addClass("d-none");
                 }
             }
         }
