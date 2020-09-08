@@ -22,9 +22,10 @@ function annihilate() {
 
     for (let item of document.getElementById("restore-window").childNodes[0].childNodes) {
         let input = item.childNodes[0];
+        let coffee = $(input).data('coffee');
         if (input.checked) {
-            let coffeeID = "coffee" + (input.coffee.id * -1);
-            let coffeeIndex = (input.coffee.id * -1) - 1;
+            let coffeeID = "coffee" + (coffee.id * -1);
+            let coffeeIndex = (coffee.id * -1) - 1;
             delete coffees[coffeeIndex];
             if (document.getElementById(coffeeID) !== null) {
 
