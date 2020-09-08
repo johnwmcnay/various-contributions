@@ -91,8 +91,20 @@ function hasDisplayNone(element) {
 function toggle() {
 
     //organizes the data to be toggled
-    let addSectionElements = [newCoffee, addRoast, searchIcon, addCoffeeButton];
-    let searchSectionElements = [searchCoffee, roastSelection, resultsText, addIcon];
+    let addSectionElements = [
+        $('#add-coffee'),
+        $('#add-roast-selection'),
+        $('#search-icon'),
+        $('#add-submit'),
+    ];
+
+    let searchSectionElements = [
+        $('#search'),
+        $('#roast-selection'),
+        $('#results'),
+        $('#add-icon'),
+    ]
+
     let elementsToUpdate = addSectionElements.concat(searchSectionElements);
 
     //when toggle is triggered, it will always swap every element's "d-none" class
@@ -124,9 +136,9 @@ function updateResults(count) {
 
 function setResultsNumber(count) {
     if (count === 0) {
-        $(numOfResults).text("No");
+        $('#numOfResults').text("No");
     } else {
-        $(numOfResults).text(count.toString());
+        $('#numOfResults').text(count.toString());
     }
 }
 
