@@ -56,6 +56,14 @@ img {
     padding: 0;
 }
 
+.fa-edit {
+    float: left;
+    position: absolute;
+    font-size: min(2.5vw, 20px);
+    top: 15px;
+    left: 15px;
+}
+
 .fa-trash-alt {
     float: right;
     position: absolute;
@@ -64,7 +72,7 @@ img {
     right: 15px;
 }
 
-.fa-trash-alt:hover {
+.fa-trash-alt:hover, .fa-edit:hover {
     color: darkred;
 }
 
@@ -130,4 +138,132 @@ p {
 
 #add-submit:disabled {
     background-color: gray;
+}
+
+#edit-window {
+    background-color: floralwhite;
+    position: fixed;
+    border: 10px solid var(--mocha);
+    border-radius: 10px;
+    opacity: 95%;
+    width: 35%;
+    z-index: 1001;
+    top: calc(50% - 103px);
+    left: calc(50% - 171px);
+}
+
+#edit-name, #edit-roast, #edit-buttons {
+    margin: 10px 30px;
+
+}
+
+#edit-name, #edit-roast {
+    border: 3px solid var(--chocolate);
+}
+
+.edit-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: floralwhite;
+    font-size: 14px;
+}
+
+#discard-button, #restore-annihilate {
+    background-color: darkred;
+}
+
+#discard-button:hover, #restore-annihilate:hover {
+    background-color: #be0c0c;
+}
+
+#save-button, #restore-item {
+    background-color: var(--light-brown);
+}
+
+#save-button:hover, #restore-item:hover {
+    background-color: var(--mocha);
+}
+
+#restore-trash-icon {
+    font-size: min(5vw, 48px);
+    color: var(--chocolate);
+    position: fixed;
+    right: 2.5vw;
+    bottom: 2.5vw;
+    opacity: 80%;
+}
+
+#restore-trash-icon:hover {
+    opacity: 100%;
+}
+
+#restore-window {
+    width: 40%;
+    position: fixed;
+    top: calc(50% - 100px);
+    left: 30%;
+    z-index: 2000;
+    border: 5px solid var(--chocolate);
+    border-radius: 5px;
+    opacity: 95%;
+    background-color: floralwhite;
+
+}
+
+.restore-label {
+    padding: 5px 10px;
+    margin: 0;
+    width: 100%;
+}
+
+.even {
+    background-color: var(--light-brown);
+}
+
+.odd {
+    background-color: var(--lightest-brown);
+}
+
+#restore-buttons {
+    background-color: var(--mocha);
+    height: 200px;
+}
+
+.restore-button {
+    background-color: floralwhite;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#restore-annihilate:hover, #restore-item:hover {
+    color: floralwhite;
+}
+
+#restore-select-all:hover, #restore-unselect-all:hover {
+    background-color: var(--lightest-brown);
+    color: floralwhite;
+}
+
+.restore-list {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.fa-times-circle {
+    position: fixed;
+    right: 31%;
+    top: calc(50% - 105px);
+    font-size: 24px;
+    z-index: 3000;
+    color: var(--mocha);
+    background-color: floralwhite;
+    opacity: 50%;
+    border: 0;
+    border-radius: 50%;
+}
+
+.fa-times-circle:hover {
+    background-color: var(--chocolate);
+    color: var(--lightest-brown);
+    opacity: 100%;
 }

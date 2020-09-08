@@ -3,50 +3,73 @@ function renderCoffee(coffee) {
 
     //creates a div as a card along with other bootstrap classes
     let coffeeCard = document.createElement("div");
-    coffeeCard.classList.add("card", "col-5", "col-lg-3", "col-xl-2", "m-2");
-    coffeeCard.id = "coffee" + coffee.id;
+    $(coffeeCard)
+        .addClass("card col-5 col-lg-3 col-xl-2 m-2")
+        .attr('id', "coffee" + coffee.id);
 
     let cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
+    $(cardBody).addClass("card-body");
 
     let cardTitle = document.createElement("h3");
-    cardTitle.classList.add("card-title");
-    cardTitle.innerText = coffee.name;
+    $(cardTitle)
+        .addClass("card-title")
+        .text(coffee.name)
+        .attr('id', "coffee" + coffee.id + "name");
 
     let cardText = document.createElement("p");
-    cardText.innerText = coffee.roast;
-    cardText.classList.add("card-text");
+    $(cardText)
+        .text(coffee.roast)
+        .addClass("card-text")
+        .attr('id', "coffee" + coffee.id + "roast");
 
     let deleteIcon = document.createElement("div");
-    deleteIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
-    deleteIcon.classList.add("d-none");
+    $(deleteIcon)
+        .html('<i class="fas fa-trash-alt"></i>')
+        .addClass("d-none")
+        .click(function() {
+            deleteItem(coffee);
+        });
 
-    //adds delete functionality to the delete icon
-    deleteIcon.addEventListener('click', function() {
-        deleteItem(coffee);
-    });
+    let editIcon = document.createElement("div");
+    $(editIcon)
+        .html('<i class="fas fa-edit"></i>')
+        .addClass("d-none")
+        .click(function(event) {
+            if ($('#restore-window').hasClass("d-none")) {
 
-    // the next two events toggle between background colors based on hover state
-    // the delete icon is only displayed when the card is hovered over
-    coffeeCard.addEventListener("mouseenter", function( event ) {
-        coffeeCard.classList.remove('card');
-        coffeeCard.classList.add('card-hover');
-        deleteIcon.classList.remove("d-none");
-    });
+                $('#edit-window').removeClass("d-none");
 
-    coffeeCard.addEventListener("mouseleave", function( event ) {
-        coffeeCard.classList.add('card');
-        coffeeCard.classList.remove('card-hover');
-        deleteIcon.classList.add("d-none");
-    });
+                $('#edit-name')
+                    .val(coffee.name)
+                    .focus()
+
+                $('#edit-roast').val(coffee.roast);
+
+                $('#save-button').data('coffee', coffee);
+
+            }
+        });
+
+    $(coffeeCard).hover(
+        function( event ) {
+            $(coffeeCard)
+                .removeClass('card')
+                .addClass('card-hover');
+            $(deleteIcon).removeClass("d-none");
+            $(editIcon).removeClass("d-none");
+        },
+        function( event ) {
+            $(coffeeCard)
+                .addClass('card')
+                .removeClass('card-hover');
+            $(deleteIcon).addClass("d-none");
+            $(editIcon).addClass("d-none");
+        }
+    );
 
     // attach all the elements to the card body
-    cardBody.appendChild(cardTitle);
-    cardBody.appendChild(cardText);
-    cardBody.appendChild(deleteIcon);
-
-    // attach the card body to the card
-    coffeeCard.appendChild(cardBody);
+    $(cardBody).append(cardTitle, cardText, deleteIcon, editIcon);
+    $(coffeeCard).append(cardBody);
 
     // returned the new card element
     return coffeeCard;
@@ -54,15 +77,19 @@ function renderCoffee(coffee) {
 
 function renderCoffees(coffees) {
 
-    coffeeDiv.innerHTML = '';
+    $('#coffees').html('');
 
     let coffeeCount = 0;
 
     //goes the an array of coffee objects and renders it to the screen only if it has a positive ID
     for (let coffee of coffees) {
+        if (coffee === null) {
+            continue;
+        }
+
         if (coffee.id > 0) {
             let child = renderCoffee(coffee);
-            coffeeDiv.appendChild(child);
+            $('#coffees').append(child);
             coffeeCount++;
         }
     }
@@ -83,15 +110,17 @@ function updateCoffees(e) {
 
         //looks to include coffees with the correct roast and search string filter
         //will only include objects with a positive number ID
-        if (coffee.id > 0) {
-            let coffeeID = "coffee" + coffee.id;
-            let element = document.getElementById(coffeeID);
+        if (coffee !== null) {
+            if (coffee.id > 0) {
+                let coffeeID = "#coffee" + coffee.id;
+                let element = $(coffeeID);
 
-            if (matchesFilters(coffee)) {
-                element.classList.remove("d-none");
-                coffeeCount++;
-            } else {
-                element.classList.add("d-none");
+                if (matchesFilters(coffee)) {
+                    $(element).removeClass("d-none");
+                    coffeeCount++;
+                } else {
+                    $(element).addClass("d-none");
+                }
             }
         }
     });

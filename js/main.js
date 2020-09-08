@@ -7,6 +7,9 @@ function deleteItem(coffeeToDelete) {
     //searches and returns the correct coffee object to stage for deletion
     let elementToRemove = function() {
         for (let coffee of coffees) {
+            if (!coffee) {
+                continue;
+            }
 
             if (coffee.id === coffeeToDelete.id) {
                 return coffee;
@@ -14,10 +17,11 @@ function deleteItem(coffeeToDelete) {
         }
     }();
 
-    let coffeeID = "coffee" + elementToRemove.id;
+    let coffeeID = "#coffee" + elementToRemove.id;
 
     //set the "deleted" item to have 'display: none'
-    document.getElementById(coffeeID).classList.add("d-none");
+    // document.getElementById(coffeeID).classList.add("d-none");
+    $(coffeeID).addClass("d-none");
 
     //indicates that the item will not be drawn by changing its ID to a negative number
     elementToRemove.id *= -1;
@@ -26,13 +30,14 @@ function deleteItem(coffeeToDelete) {
     localStorage.setItem("coffees", JSON.stringify(coffees));
 
     updateCoffees();
+    updateRestoreList();
 }
 
 //returns whether user-inputted text matches and part of a coffee name; case-insensitive
 function hasPartialNameMatch(coffee){
 
     let coffeeName = coffee.name.toLowerCase();
-    let searchText = searchCoffee.value.toLowerCase().trim();
+    let searchText = $('#search').val().toLowerCase().trim();
 
     return (coffeeName.indexOf(searchText) !== -1);
 
@@ -42,8 +47,12 @@ function hasPartialNameMatch(coffee){
 function addCoffee(e){
     e.preventDefault()
 
-    let coffeeName = newCoffee.value.trim();
-    let newRoast = addRoast.value;
+    let coffeeName = function () {
+
+        return $('#add-coffee').val().trim();
+    }();
+
+    let newRoast = $('#add-roast-selection').val();
     let updatedCoffee = {
         id: coffees.length + 1,
         name: coffeeName,
@@ -59,44 +68,55 @@ function addCoffee(e){
         localStorage.setItem("coffees", JSON.stringify(coffees));
     }
 
-    //create and attach a new HTML element to represent the new coffe
-    coffeeDiv.appendChild(renderCoffee(updatedCoffee));
-
-    newCoffee.value = '';
-    addCoffeeButton.disabled = true;
+    //create and attach a new HTML element to represent the new coffee
+    $('#add-coffee').val('');
+    $('#coffees').append(renderCoffee(updatedCoffee));
+    $('#add-submit').attr('disabled', true);
 
     //makes sure the newly appended coffee is only show if it still meets
     updateCoffees();
 }
 
 function addHoverOn() {
-    addIcon.style.color = "#AB947E";
-    searchIcon.style.color = "#AB947E";
+    $('#add-icon').css('color', '#AB947E');
+    $('#search-icon').css('color', "#AB947E");
 }
 
 function addHoverOff() {
-    addIcon.style.color = "floralwhite";
-    searchIcon.style.color = "floralwhite";
+    $('#add-icon').css('color', 'floralwhite');
+    $('#search-icon').css('color', "floralwhite");
 }
 
 //passes in an HTML element and returns true if it contains the class "d-none"
 function hasDisplayNone(element) {
-    return (element.classList.value.indexOf("d-none") !== -1);
+    return ($(element).hasClass("d-none"));
 }
 
 function toggle() {
 
     //organizes the data to be toggled
-    let addSectionElements = [newCoffee, addRoast, searchIcon, addCoffeeButton];
-    let searchSectionElements = [searchCoffee, roastSelection, resultsText, addIcon];
+    let addSectionElements = [
+        $('#add-coffee'),
+        $('#add-roast-selection'),
+        $('#search-icon'),
+        $('#add-submit'),
+    ];
+
+    let searchSectionElements = [
+        $('#search'),
+        $('#roast-selection'),
+        $('#results'),
+        $('#add-icon'),
+    ]
+
     let elementsToUpdate = addSectionElements.concat(searchSectionElements);
 
     //when toggle is triggered, it will always swap every element's "d-none" class
     elementsToUpdate.forEach(element => {
         if (hasDisplayNone(element)) {
-            element.classList.remove("d-none");
+            $(element).removeClass("d-none");
         } else {
-            element.classList.add("d-none");
+            $(element).addClass("d-none");
         }
     });
 
@@ -106,12 +126,10 @@ function toggle() {
 
 //handles the edge case of '1 result' so it doesn't display at '1 results'
 function updatePlurality(count) {
-    let element = document.querySelector("#plural");
-
     if (count === 1) {
-        element.innerText = "";
+        $('#plural').text("");
     } else {
-        element.innerText = "s";
+        $('#plural').text("s");
     }
 }
 
@@ -122,28 +140,28 @@ function updateResults(count) {
 
 function setResultsNumber(count) {
     if (count === 0) {
-        numOfResults.innerText = "No";
+        $('#numOfResults').text("No");
     } else {
-        numOfResults.innerText = count.toString();
+        $('#numOfResults').text(count.toString());
     }
 }
 
 function updateAddButton() {
-    addCoffeeButton.disabled = (newCoffee.value.trim() === "");
+    let isBlank = ( $('#add-coffee').val().trim() === "" );
+    $('#add-submit').attr('disabled', isBlank);
 }
 
 function resetFieldsToDefault() {
-    searchCoffee.value = ''
-    newCoffee.value = '';
-    roastSelection.value = 'all';
-    addRoast.value = 'light';
-    addCoffeeButton.disabled = true;
+    $('#search').val('');
+    $('#add-coffee').val('');
+    $('#roast-selection').val('all');
+    $('#add-roast-selection').val('light');
+    $('#add-submit').attr('disabled', true);
 }
-
 
 function matchesFilters(coffee) {
 
-    let selectedRoast = roastSelection.value;
+    let selectedRoast = $('#roast-selection').val();
     let matchesRoastFilter = (coffee.roast === selectedRoast || selectedRoast === "all");
 
     return (matchesRoastFilter & hasPartialNameMatch(coffee));
