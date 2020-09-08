@@ -79,8 +79,6 @@ function renderCoffees(coffees) {
 
     $('#coffees').html('');
 
-    // coffeeDiv.innerHTML = '';
-
     let coffeeCount = 0;
 
     //goes the an array of coffee objects and renders it to the screen only if it has a positive ID
@@ -92,7 +90,6 @@ function renderCoffees(coffees) {
         if (coffee.id > 0) {
             let child = renderCoffee(coffee);
             $('#coffees').append(child);
-            // coffeeDiv.appendChild(child);
             coffeeCount++;
         }
     }

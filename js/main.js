@@ -47,7 +47,11 @@ function hasPartialNameMatch(coffee){
 function addCoffee(e){
     e.preventDefault()
 
-    let coffeeName = $('#add-coffee').val().trim();
+    let coffeeName = function () {
+
+        return $('#add-coffee').val().trim();
+    }();
+
     let newRoast = $('#add-roast-selection').val();
     let updatedCoffee = {
         id: coffees.length + 1,
@@ -65,8 +69,8 @@ function addCoffee(e){
     }
 
     //create and attach a new HTML element to represent the new coffee
-    $('#coffees').append(renderCoffee(updatedCoffee));
     $('#add-coffee').val('');
+    $('#coffees').append(renderCoffee(updatedCoffee));
     $('#add-submit').attr('disabled', true);
 
     //makes sure the newly appended coffee is only show if it still meets
