@@ -4,7 +4,7 @@ function renderCoffee(coffee) {
     //creates a div as a card along with other bootstrap classes
     let coffeeCard = document.createElement("div");
     $(coffeeCard)
-        .addClass("card col-5 col-lg-3 col-xl-2 m-2")
+        .addClass("card col-11 col-sm-5 col-lg-3 col-xl-2 m-2")
         .attr('id', "coffee" + coffee.id);
 
     let cardBody = document.createElement("div");

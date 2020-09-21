@@ -15,12 +15,13 @@ body {
     margin-bottom: 10px;
 }
 img {
-    width: min(35vw, 350px);
+    width: min(50vw, 325px);
     margin-bottom: 15px;
 }
 
 .card-title {
-    font-size: min(3vw, 24px);
+    font-size: min(5.5vw, 22px);
+    margin: 0;
 }
 
 .card-body {
@@ -39,7 +40,7 @@ img {
 
 .card-text {
     font-style: italic;
-    font-size: min(2.2vw, 16px);
+    font-size: min(4vw, 16px);
 }
 
 .card {
