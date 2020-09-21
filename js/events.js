@@ -97,7 +97,7 @@ function updateRestoreList() {
 
     let even = true;
     let items = document.createElement("div");
-    $(items).addClass("col-8 p-0 restore-list")
+    $(items).addClass("col-7 p-0 restore-list")
 
     for (let coffee of coffees) {
         if (!coffee) {

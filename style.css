@@ -60,7 +60,7 @@ img {
 .fa-edit {
     float: left;
     position: absolute;
-    font-size: min(2.5vw, 20px);
+    font-size: 20px;
     top: 15px;
     left: 15px;
 }
@@ -68,7 +68,7 @@ img {
 .fa-trash-alt {
     float: right;
     position: absolute;
-    font-size: min(2.5vw, 20px);
+    font-size: 20px;
     top: 15px;
     right: 15px;
 }
@@ -144,13 +144,16 @@ p {
 #edit-window {
     background-color: floralwhite;
     position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: fit-content;
+    min-width: 320px;
+    max-width: 500px;
     border: 10px solid var(--mocha);
     border-radius: 10px;
     opacity: 95%;
-    width: 35%;
     z-index: 1001;
-    top: calc(50% - 103px);
-    left: calc(50% - 171px);
 }
 
 #edit-name, #edit-roast, #edit-buttons {
@@ -199,11 +202,14 @@ p {
 }
 
 #restore-window {
-    width: 40%;
     position: fixed;
-    top: calc(50% - 100px);
-    left: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 0;
     z-index: 2000;
+    min-width: 320px;
+    max-width: 500px;
     border: 5px solid var(--chocolate);
     border-radius: 5px;
     opacity: 95%;
@@ -252,8 +258,8 @@ p {
 
 .fa-times-circle {
     position: fixed;
-    right: 31%;
-    top: calc(50% - 105px);
+    right: -12px;
+    top: -12px;
     font-size: 24px;
     z-index: 3000;
     color: var(--mocha);
@@ -268,3 +274,4 @@ p {
     color: var(--lightest-brown);
     opacity: 100%;
 }
+
